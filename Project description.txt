@@ -1,0 +1,11 @@
+Teacher can make a quiz by adding questions (typing the question and
+maybe charts and figures and the 4 choices and specifying the correct
+answer) and then submitting and setting a passkey for the quiz. then
+he can start the quiz at any time.
+Students can take the quiz by entering the passkey and their name.
+then they will be able to answer the question until the quiz is closed
+by the teacher. After the time for quiz finished, then they will see
+their score which is set in the system
+then difficulty of questions can be analyzed based on average time
+students have spent on them and how many of them have given a correct
+answer
