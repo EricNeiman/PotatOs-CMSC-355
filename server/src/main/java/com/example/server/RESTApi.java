@@ -44,7 +44,7 @@ public class RESTApi {
     @Path(PotatOsApi.HEARTBEAT)
     @Produces(MediaType.TEXT_PLAIN)
     public Response heartbeat() {
-        System.out.print("Heartbeat requested, sending ok.");
+        System.out.println("Heartbeat requested, sending ok.");
         return Response.status(Response.Status.OK)
                 .entity("server is up")
                 .build();
