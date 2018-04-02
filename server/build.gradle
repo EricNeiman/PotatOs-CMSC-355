@@ -10,6 +10,8 @@ dependencies {
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.18'
     compile 'org.glassfish.jersey.containers:jersey-container-jdk-http:2.18'
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.18'
+
+    compile 'org.xerial:sqlite-jdbc:3.21.0'
 }
 
 sourceCompatibility = "1.7"

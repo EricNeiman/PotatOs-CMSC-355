@@ -33,10 +33,11 @@ public class RESTApi {
             System.out.println("Invalid json received.");
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         }
-
-
         return rs;
     }
+
+
+
 
 
     //just a function for testing that the server is up.  Url to test will be printed on startup.
