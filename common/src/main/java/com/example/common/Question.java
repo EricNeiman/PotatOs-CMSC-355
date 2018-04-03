@@ -23,6 +23,7 @@ public class Question {
         this.pointValue = 0;
     } // default constructor
 
+    // getters and setters for variables
     public String getPrompt() {
         return prompt;
     }

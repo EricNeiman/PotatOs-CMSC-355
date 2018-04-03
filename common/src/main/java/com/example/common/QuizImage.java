@@ -17,6 +17,7 @@ public class QuizImage {
         this.imageData = null;
     } // default constructor
 
+    // getters and setters for variables
     public String getFileName() {
         return fileName;
     }
