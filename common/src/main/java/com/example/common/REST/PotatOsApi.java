@@ -24,4 +24,12 @@ public class PotatOsApi {
 
     public static final String HEARTBEAT = "heartbeat";
     public static final String API_PATH = "http://" + API_IP + ":" + API_PORT + "/" + API_DIR + "/";
+
+
+    public static String getJsonREST(String api_path) {
+
+
+
+
+    }
 }

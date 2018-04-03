@@ -15,11 +15,11 @@ public class PotatOsDatabase {
     //the statements that should be executed to create a new database. order matters
     private static final String[] TABLE_CREATE_QUERIES =
     {
-        "CREATE TABLE Users (UserID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, passwordHash TEXT, email TEXT, name TEXT);",
-        "CREATE TABLE Classes (ClassID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ownerID INTEGER NOT NULL, className TEXT, classCode TEXT);",
-        "CREATE TABLE Questions (QuestionID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, prompt TEXT, imageID INTEGER, correct BOOL, pointValue INTEGER);",
-        "CREATE TABLE UserEnrollments (EnrollmentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, UserID INTEGER, ClassID INTEGER);",
-        "CREATE TABLE Quiz"
+        UserTable.CREATE_SQL,
+        ClassTable.CREATE_SQL,
+        QuestionTable.CREATE_SQL,
+//        "CREATE TABLE UserEnrollments (EnrollmentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, UserID INTEGER, ClassID INTEGER);",
+        QuizTable.CREATE_SQL,
     };
 
     public static Connection getDbConnection() throws SQLException {

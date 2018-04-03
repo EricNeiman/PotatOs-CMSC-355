@@ -24,6 +24,10 @@ public class UserREST {
     //full path that you request from
     public static final String CREATE_USER_FULL_PATH = PotatOsApi.API_PATH + CREATE_USER;
 
+    public static final String GET_USER_BY_ID = "createUserById";
+    public static final String CREATE_USER_BY_ID_FULL_PATH = PotatOsApi.API_PATH + GET_USER_BY_ID;
+
+
     //returns the copy of the user as interpreted by the server
     public User createUpdate(User input) {
         Client client = ClientBuilder.newClient();
@@ -56,7 +60,7 @@ public class UserREST {
     }
 
     public User getById(int userID) {
-        return null;
+        CREATE_USER_BY_ID_FULL_PATH
     }
 
     public boolean delete(User input) {

@@ -9,7 +9,6 @@ import com.example.common.Quiz;
 public class QuizREST {
     public Quiz createUpdate(Quiz quiz) {
         return null;
-
     }
 
     public Quiz getById(int quizID) {
