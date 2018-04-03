@@ -3,9 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PotatOs-CMSC-355.iml" filepath="$PROJECT_DIR$/PotatOs-CMSC-355.iml" />
+      <module fileurl="file://D:\Work\Android\StudioProjects\PotatOs-CMSC-355\PotatOs-CMSC-355.iml" filepath="D:\Work\Android\StudioProjects\PotatOs-CMSC-355\PotatOs-CMSC-355.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Work\Android\StudioProjects\PotatOs-CMSC-355\app\app.iml" filepath="D:\Work\Android\StudioProjects\PotatOs-CMSC-355\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://D:\Work\Android\StudioProjects\PotatOs-CMSC-355\common\common.iml" filepath="D:\Work\Android\StudioProjects\PotatOs-CMSC-355\common\common.iml" />
       <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
+      <module fileurl="file://D:\Work\Android\StudioProjects\PotatOs-CMSC-355\server\server.iml" filepath="D:\Work\Android\StudioProjects\PotatOs-CMSC-355\server\server.iml" />
     </modules>
   </component>
 </project>
