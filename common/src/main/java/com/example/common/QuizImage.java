@@ -2,7 +2,7 @@ package com.example.common;
 
 public class QuizImage {
     private String fileName; // file name (includes extension)
-    private String imagePath; // should be the image path under the quiz folder
+    private String imagePath; // should be the image path under the quiz folder TODO find android image API
     private byte[] imageData; // for transferring to server
 
     public QuizImage(String fileName, String imagePath, byte[] imageData) {

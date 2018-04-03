@@ -1,8 +1,8 @@
 package com.example.common;
 
 public class User {
-    private Class[] classesIn; // class user is in storage
-    private Class[] classesOwned; // owned class storage for user
+    private Class[] classesIn; // class user is in storage TODO switch to array list
+    private Class[] classesOwned; // owned class storage for user TODO switch to array list
     private String name; // user name
     private String email; // user email (used for sign in)
     private String passwordHash; // user password

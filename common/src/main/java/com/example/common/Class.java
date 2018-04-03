@@ -4,8 +4,8 @@ public class Class {
     private User owner; // class owner user object
     private String className; // class name text
     private String classCode; // class code text
-    private Quiz[] quizzes; // quiz storage for class
-    private User[] users; // user(student) storage for the class
+    private Quiz[] quizzes; // quiz storage for class TODO switch to array list
+    private User[] users; // user(student) storage for the class TODO switch to array list
 
     public Class(User owner, String className, String classCode, Quiz[] quizzes, User[] users){
         this.owner = owner;

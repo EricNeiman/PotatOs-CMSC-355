@@ -5,7 +5,7 @@ import java.util.Date;
 public class Quiz {
     private String quizName; // quiz name text
     private String password; // quiz password
-    private Question[] questions; // question storage
+    private Question[] questions; // question storage TODO switch to array list
     private Date closeTime; // date that quiz close
     private User owner; // quiz owner object
     private Double grade; // grade
