@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">PotatOs</string>
+    <string name="the_quiz_app">The Quiz App</string>
+    <string name="logIn">Log In</string>
+    <string name="createAc">Create Account</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="background">Background</string>
+    <string name="className">ClassName</string>
+    <string name="numQuiz">#Quizzes</string>
+    <string name="numOpenQuiz">#OpenQuizzes</string>
+    <string name="numStudent">#Students</string>
+
+    <string-array name="classnames">
+        <item>First Class</item>
+        <item>Second Class</item>
+        <item>Third Class</item>
+    </string-array>
+
+    <string-array name="numOfQuizzes">
+        <item>3</item>
+        <item>0</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="numOfOpenQuizzes">
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="numOfStudents">
+        <item>20</item>
+        <item>16</item>
+        <item>15</item>
+    </string-array>
 </resources>
