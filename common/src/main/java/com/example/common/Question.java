@@ -47,7 +47,4 @@ public class Question {
         return prompt;
     }
 
-
-
-
 }
