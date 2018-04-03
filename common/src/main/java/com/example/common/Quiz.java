@@ -1,25 +1,25 @@
 package com.example.common;
 
-import java.util.Date;
+import java.util.Date; // for Close time
 
 public class Quiz {
     private String quizName; // quiz name text
     private String password; // quiz password
     private Question[] questions; // question storage TODO switch to array list
     private Date closeTime; // date that quiz close
+    private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
-    private Double grade; // grade TODO implement method to calculate grade
     private int pointsEarned; // points for correct answers TODO implement method to tally up earned points based on correct answers
     private int pointsPossible; // points possible TODO implement method to tally up points based on questions' individual values
     private Boolean submitted; // true if quiz was submitted on time
 
-    public Quiz(String quizName, String password, Question[] questions, Date closeTime, User owner, Double grade, int pointsEarned, int pointsPossible, boolean submitted) {
+    public Quiz(String quizName, String password, Question[] questions, Date closeTime, Double timer, User owner, int pointsEarned, int pointsPossible, boolean submitted) {
         this.quizName = quizName;
         this.password = password;
         this.questions = questions;
         this.closeTime = closeTime;
+        this.timer = timer;
         this.owner = owner;
-        this.grade = grade;
         this.pointsEarned = pointsEarned;
         this.pointsPossible = pointsPossible;
         this.submitted = submitted;
@@ -30,8 +30,8 @@ public class Quiz {
         this.password = "";
         this.questions = null;
         this.closeTime = null;
+        this.timer = 0.0;
         this.owner = null;
-        this.grade = 0.0;
         this.pointsEarned = 0;
         this.pointsPossible = 0;
         this.submitted = false;
@@ -66,6 +66,13 @@ public class Quiz {
         this.closeTime = closeTime;
     }
 
+    public Double getTimer() {
+        return timer;
+    }
+    public void setTimer(Double timer) {
+        this.timer = timer;
+    }
+
     public User getOwner() {
         return owner;
     }
@@ -74,11 +81,8 @@ public class Quiz {
     }
 
     public Double getGrade() {
-        return grade;
-    }
-    public void setGrade(Double grade) {
-        this.grade = grade;
-    }
+        return Double.valueOf(pointsEarned/pointsPossible);
+    } // value of grade is calculated based off points earned and total points TODO possibly round to 2 decimal points
 
     public int getPointsEarned() {
         return pointsEarned;
