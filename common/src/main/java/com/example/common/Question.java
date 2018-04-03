@@ -2,12 +2,12 @@ package com.example.common;
 
 public class Question {
     private String prompt; // question text
-    private QuizImage image; // picture for question
+    private QuestionImage image; // picture for question
     private Boolean correct; // true if user selected correct answer
     private Answer[] answers; // 4 answer objects attached
     private int pointValue; // points possible for question
 
-    public Question(String prompt, QuizImage image, Boolean correct, Answer[] answers, int pointValue) {
+    public Question(String prompt, QuestionImage image, Boolean correct, Answer[] answers, int pointValue) {
         this.prompt = prompt;
         this.image =  image;
         this.correct = correct;
@@ -31,10 +31,10 @@ public class Question {
         this.prompt = prompt;
     }
 
-    public void setImage(QuizImage image) {
+    public void setImage(QuestionImage image) {
         this.image = image;
     }
-    public QuizImage getImage() {
+    public QuestionImage getImage() {
         return image;
     }
 
