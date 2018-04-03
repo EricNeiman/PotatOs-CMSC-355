@@ -8,9 +8,9 @@ public class Quiz {
     private Question[] questions; // question storage TODO switch to array list
     private Date closeTime; // date that quiz close
     private User owner; // quiz owner object
-    private Double grade; // grade
-    private int pointsEarned; // points for correct answers
-    private int pointsPossible; // points possible
+    private Double grade; // grade TODO implement method to calculate grade
+    private int pointsEarned; // points for correct answers TODO implement method to tally up earned points based on correct answers
+    private int pointsPossible; // points possible TODO implement method to tally up points based on questions' individual values
     private Boolean submitted; // true if quiz was submitted on time
 
     public Quiz(String quizName, String password, Question[] questions, Date closeTime, User owner, Double grade, int pointsEarned, int pointsPossible, boolean submitted) {
