@@ -19,5 +19,4 @@
         <activity android:name=".TeacherOverview" />
         <activity android:name=".ClassQuizzes"></activity>
     </application>
-
 </manifest>

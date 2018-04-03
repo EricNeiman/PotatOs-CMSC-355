@@ -2,7 +2,7 @@ package com.example.server;
 
 import javax.ws.rs.ext.RuntimeDelegate;
 
-import com.example.common.PotatOsApi;
+import com.example.common.REST.PotatOsApi;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
