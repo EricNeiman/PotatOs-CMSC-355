@@ -10,7 +10,7 @@ public class EnrollmentsTable {
     public static final String COLUMN_USER_ID = "userID";
     public static final String COLUMN_CLASS_ID = "classID";
     public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME + " (" +
-            COLUMN_ENROLLMENT_ID + " INTEGER AUTONUMBER NOT NULL, " +
+            COLUMN_ENROLLMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             COLUMN_USER_ID + " INTEGER NOT NULL, " +
             COLUMN_CLASS_ID + " INTEGER NOT NULL);";
 }
