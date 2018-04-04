@@ -13,7 +13,7 @@ import java.sql.SQLException;
 class UserTableTest {
     @BeforeEach
     void setUp() throws SQLException {
-        PotatOsDatabase.deleteTables();  //don't delete so you can inspect the database
+        PotatOsDatabase.deleteTables();
         PotatOsDatabase.createTables();
     }
 
@@ -47,5 +47,9 @@ class UserTableTest {
         Assert.assertEquals(cls.getClassID(), dbCls.getClassID());
         Assert.assertEquals(cls.getClassName(), dbCls.getClassName());
         Assert.assertEquals(cls.getClassCode(), dbCls.getClassCode());
+
+
+//        User dbUsr = UserTable.getUserById(user.getId());
+//        Assert.assertNotEquals(null, dbUsr.getClassesIn());
     }
 }
