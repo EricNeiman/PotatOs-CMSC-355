@@ -26,7 +26,9 @@ public class ClassResource {
         Response rs;
         try {
             Gson gson = new Gson();
-            Class cls = ClassTable.createClass(gson.fromJson(message, Class.class));
+            Class cls = gson.fromJson(message, Class.class);
+            ClassTable.createClass(cls);
+
             rs = Response.status(Response.Status.OK)
                     .entity(
                             gson.toJson(cls)

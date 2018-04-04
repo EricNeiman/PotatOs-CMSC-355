@@ -12,7 +12,7 @@ public class PotatOsDatabase {
     public static final String DATABASE_NAME = "PotatOs.db";
     private static final String TABLE_NAME = "words";
 
-
+    private static Connection db;
     //the statements that should be executed to create a new database. order matters
     private static final String[] TABLE_CREATE_QUERIES =
     {
@@ -24,10 +24,15 @@ public class PotatOsDatabase {
     };
 
     public static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
+        if (db == null) {
+            db = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
+        }
+        return db;
     }
 
     public static void createTables() throws SQLException {
+        deleteTables();
+        System.out.println("Recreating tables...");
         Connection db = PotatOsDatabase.getDbConnection();
         Statement statement = db.createStatement();
         statement.setQueryTimeout(30);
@@ -35,14 +40,27 @@ public class PotatOsDatabase {
         for (String query: TABLE_CREATE_QUERIES) {
             statement.execute(query);
         }
+        System.out.println("Tables have been created.");
     }
 
     public static void deleteTables() {
         File file = new File("./" + DATABASE_NAME);
-        if (file.delete()) {
-            System.out.println("Database deleted.");
-        } else {
-            System.out.println("Delete operation failed");
+
+
+        if (file.exists()) {
+            if (db != null) {
+                try {
+                    db.close();
+                } catch (SQLException e) {
+                    System.out.println("Unable to close database...");
+                    e.printStackTrace();
+                }
+            }
+            if (file.delete()) {
+                System.out.println("Database deleted.");
+            } else {
+                System.out.println("Delete operation failed");
+            }
         }
     }
 

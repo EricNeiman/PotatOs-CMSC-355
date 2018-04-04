@@ -13,6 +13,7 @@ public class Quiz {
     private int pointsPossible; // points possible TODO implement method to tally up points based on questions' individual values
     private Boolean submitted; // true if quiz was submitted on time
 
+    private int quizId; //database id
     public Quiz(String quizName, String password, Question[] questions, Date closeTime, Double timer, User owner, int pointsEarned, int pointsPossible, boolean submitted) {
         this.quizName = quizName;
         this.password = password;
@@ -103,5 +104,13 @@ public class Quiz {
     }
     public void setSubmitted(Boolean submitted) {
         this.submitted = submitted;
+    }
+
+    public int getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
     }
 }

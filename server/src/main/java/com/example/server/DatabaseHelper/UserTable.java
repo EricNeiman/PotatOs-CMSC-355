@@ -102,21 +102,29 @@ public class UserTable {
             query.setString(3, user.getName());
             query.setInt(4, user.getId());
 
+            query.execute();
             return true;
         } catch (SQLException ex) {
             return false;
         }
     }
 
-
+    //the ID will be set in the passed class
     public static void createUser(User user) throws SQLException {
         //TODO: implement
         Connection db = PotatOsDatabase.getDbConnection();
-        PreparedStatement query = db.prepareStatement("INSERT INTO " + TABLE_NAME + " " +
+        PreparedStatement query = db.prepareStatement("INSERT INTO " + TABLE_NAME + " (" +
             UserTable.COLUMN_EMAIL + ", " +
             UserTable.COLUMN_NAME + ", " +
-            UserTable.COLUMN_PASSWORD_HASH + " VALUES (?,?,?);");
-        );
+            UserTable.COLUMN_PASSWORD_HASH + ") VALUES (?,?,?);");
+
+        query.setString(1, user.getEmail());
+        query.setString(2, user.getName());
+        query.setString(3, user.getPasswordHash());
+
+        query.execute();
+
+        user.setId(query.getGeneratedKeys().getInt(1));
         System.out.println("User created ... " + user.getName());
     }
 }
