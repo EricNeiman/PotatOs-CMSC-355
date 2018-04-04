@@ -5,12 +5,12 @@ apply plugin: 'java-library-distribution'
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':common')
+    testImplementation 'junit:junit:4.12'
     compile project(':common')
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.18'
     compile 'org.glassfish.jersey.containers:jersey-container-jdk-http:2.18'
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.18'
-
     compile 'org.xerial:sqlite-jdbc:3.21.0'
 }
 

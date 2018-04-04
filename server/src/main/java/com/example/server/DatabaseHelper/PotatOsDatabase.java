@@ -9,8 +9,9 @@ import java.sql.Statement;
 
 public class PotatOsDatabase {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "PotatOs.db";
+    public static final String DATABASE_NAME = "PotatOs.db";
     private static final String TABLE_NAME = "words";
+
 
     //the statements that should be executed to create a new database. order matters
     private static final String[] TABLE_CREATE_QUERIES =
@@ -18,15 +19,15 @@ public class PotatOsDatabase {
         UserTable.CREATE_SQL,
         ClassTable.CREATE_SQL,
         QuestionTable.CREATE_SQL,
-//        "CREATE TABLE UserEnrollments (EnrollmentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, UserID INTEGER, ClassID INTEGER);",
         QuizTable.CREATE_SQL,
+        EnrollmentsTable.CREATE_SQL,
     };
 
     public static Connection getDbConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
     }
 
-    public void onCreate() throws SQLException {
+    public static void createTables() throws SQLException {
         Connection db = PotatOsDatabase.getDbConnection();
         Statement statement = db.createStatement();
         statement.setQueryTimeout(30);
@@ -36,12 +37,29 @@ public class PotatOsDatabase {
         }
     }
 
-    public void onUpgrade() {
+    public static void deleteTables() {
         File file = new File("./" + DATABASE_NAME);
         if (file.delete()) {
             System.out.println("Database deleted.");
         } else {
             System.out.println("Delete operation failed");
+        }
+    }
+
+    public static boolean checkTables() {
+        //create the database if it doesn't already exist
+        File f = new File(PotatOsDatabase.DATABASE_NAME);
+        if (!f.exists()) {
+            try {
+                PotatOsDatabase.createTables();
+                return true;
+            } catch (SQLException ex) {
+                System.out.println("Unable to create the tables... error message: ");
+                ex.printStackTrace();
+                return false;
+            }
+        } else {
+            return true;
         }
     }
 }

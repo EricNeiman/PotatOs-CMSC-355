@@ -1,9 +1,5 @@
 package com.example.common.REST;
 
-import com.example.common.Class;
-import com.example.common.User;
-import com.google.gson.Gson;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -25,11 +21,37 @@ public class PotatOsApi {
     public static final String HEARTBEAT = "heartbeat";
     public static final String API_PATH = "http://" + API_IP + ":" + API_PORT + "/" + API_DIR + "/";
 
+    //posts to the url subPath (what appears after "api/" with parameterJson in the body, and
+    //returns the body of what the server returns
+    public static String postJson(String subPath, String parameterJson) {
+        Client client = ClientBuilder.newClient();
 
-    public static String getJsonREST(String api_path) {
+        URI url = null;
+        try {
+            url = new URI(API_PATH + subPath);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
 
+        WebTarget target = client.target(url);
 
+        Response rs = target.request(MediaType.APPLICATION_JSON_TYPE).post(
+                Entity.entity(
+                        parameterJson,
+                        MediaType.APPLICATION_JSON
+                )
+        );
 
+        if (rs.getStatus() == Response.Status.OK.getStatusCode()) {
+            return rs.readEntity(String.class);
+        } else {
+            System.out.println("Response was not ok from the server on REST call to " + subPath);
+            return null;
+        }
+    }
 
+    public static String postJson(String subPath) {
+        return postJson(subPath, "");
     }
 }

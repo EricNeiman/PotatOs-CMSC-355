@@ -3,67 +3,54 @@ package com.example.common.REST;
 import com.example.common.User;
 import com.google.gson.Gson;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 /**
  * Created by vita on 4/3/18.
  */
+
+
+
 
 public class UserREST {
 
     //provided api functions
     public static final String CREATE_USER = "createUser";
-    //full path that you request from
-    public static final String CREATE_USER_FULL_PATH = PotatOsApi.API_PATH + CREATE_USER;
-
+    public static final String UPDATE_USER = "updateUser";
     public static final String GET_USER_BY_ID = "createUserById";
-    public static final String CREATE_USER_BY_ID_FULL_PATH = PotatOsApi.API_PATH + GET_USER_BY_ID;
+
+    //this one must have form data fields "email" and "passwordHash" set to the corresponding strings in the request
+    public static final String GET_USER_BY_EMAIL_PASS = "getUserByEmailPass";
+
+
+    public static User getByEmailPass(String email, String passwordHash) {
+        Gson gson = new Gson();
+        ClassUserPassRequest form = new ClassUserPassRequest();
+        form.email = email;
+        form.passwordHash = passwordHash;
+
+        String requestJson = gson.toJson(form);
+        String json = PotatOsApi.postJson(GET_USER_BY_EMAIL_PASS, requestJson);
+        return gson.fromJson(json, User.class);
+    }
 
 
     //returns the copy of the user as interpreted by the server
-    public User createUpdate(User input) {
-        Client client = ClientBuilder.newClient();
-
-        URI url = null;
-        try {
-            url = new URI(CREATE_USER_FULL_PATH);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-        WebTarget target = client.target(url);
-        Response rs = target.request(MediaType.APPLICATION_JSON_TYPE).post(
-                Entity.entity(
-                        new Gson().toJson(input),
-                        MediaType.APPLICATION_JSON
-                )
-        );
-
-        if (rs.getStatus() == Response.Status.OK.getStatusCode()) {
-            String json = rs.readEntity(String.class);
-            Gson gson = new Gson();
-
-
-            return gson.fromJson(json, User.class);
-        } else {
-            System.out.println("Response was not ok from the server on User create.");
-            return null;
-        }
+    //ID is ignored from the input
+    public static User createUser(User input) {
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(input);
+        String json = PotatOsApi.postJson(CREATE_USER, requestJson);
+        return gson.fromJson(json, User.class);
     }
 
-    public User getById(int userID) {
-        CREATE_USER_BY_ID_FULL_PATH
+    public static User getById(int userID) {
+        Gson gson = new Gson();
+        String json = PotatOsApi.postJson(GET_USER_BY_ID + "/" + userID);
+        return gson.fromJson(json, User.class);
     }
 
     public boolean delete(User input) {
         return false;
     }
+
+
 }

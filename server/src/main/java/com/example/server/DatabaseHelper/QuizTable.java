@@ -10,8 +10,7 @@ public class QuizTable {
     public static final String COLUMN_QUIZID = "quizID";
     public static final String CREATE_SQL = "";
 
-
-    Quiz getQuiz(int id) {
-
+    Quiz getQuizById(int id) {
+        //todo
     }
 }
