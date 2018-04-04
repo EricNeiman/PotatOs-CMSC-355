@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class TeacherOverview extends Activity {
@@ -29,7 +28,7 @@ public class TeacherOverview extends Activity {
         numOfOpenQuizzes = res.getStringArray(R.array.numOfOpenQuizzes);
         numOfStudents = res.getStringArray(R.array.numOfStudents);
 
-        ClassAdapter classAdapter = new ClassAdapter(this, classnames, numOfQuizzes,
+        AdapterClass classAdapter = new AdapterClass(this, classnames, numOfQuizzes,
                 numOfOpenQuizzes, numOfStudents);
         classListView.setAdapter(classAdapter);
 
