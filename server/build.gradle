@@ -2,16 +2,55 @@ apply plugin: 'java-library'
 apply plugin: 'java'
 apply plugin: 'java-library-distribution'
 
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+    }
+}
+
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+junitPlatform {
+    // platformVersion '1.1.0'
+    filters {
+        engines {
+            // include 'junit-jupiter', 'junit-vintage'
+            // exclude 'custom-engine'
+        }
+        tags {
+            // include 'fast'
+            exclude 'slow'
+        }
+        // includeClassNamePattern '.*Test'
+    }
+    // enableStandardTestTask true
+    // reportsDir file('build/test-results/junit-platform') // this is the default
+    logManager 'org.apache.logging.log4j.jul.LogManager'
+}
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':common')
-    testImplementation 'junit:junit:4.12'
+
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.1.0")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.1.0")
+    testCompile("junit:junit:4.12")
+    testRuntime("org.junit.vintage:junit-vintage-engine:5.1.0")
+
+
     compile project(':common')
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.18'
     compile 'org.glassfish.jersey.containers:jersey-container-jdk-http:2.18'
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.18'
     compile 'org.xerial:sqlite-jdbc:3.21.0'
+
+
 }
 
 sourceCompatibility = "1.7"

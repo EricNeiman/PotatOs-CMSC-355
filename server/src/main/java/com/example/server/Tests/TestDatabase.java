@@ -3,10 +3,13 @@ package com.example.server.Tests;
 /**
  * Created by vita on 4/3/18.
  */
+import com.example.common.Class;
 import com.example.common.User;
+import com.example.server.DatabaseHelper.ClassTable;
+import com.example.server.DatabaseHelper.UserTable;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.sql.SQLException;
 
 public class TestDatabase {
     /**
@@ -17,7 +20,19 @@ public class TestDatabase {
     public class ExampleUnitTest {
         @Test
         public void addition_isCorrect() {
-            User user = new User(null, null, "Science Class", "email@example.com", "asdfopjasdfopjasdoji", 0);
+            try {
+                User user = new User(null, null, "Science Class", "email@example.com", "asdfopjasdfopjasdoji", 0);
+                user = UserTable.createUser(user);
+                Class cls = new Class();
+
+                cls.setClassName("Test class");
+                cls.setClassCode("U828d");
+                cls.setOwnerId(user.getId());
+
+                ClassTable.createClass(cls);
+            } catch (SQLException ex) {
+                assert(false, "SQL error on test data");
+            }
         }
     }
 }
