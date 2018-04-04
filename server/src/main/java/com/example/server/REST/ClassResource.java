@@ -2,10 +2,8 @@ package com.example.server.REST;
 
 import com.example.common.REST.ClassREST;
 import com.example.server.DatabaseHelper.ClassTable;
-import com.example.server.DatabaseHelper.PotatOsDatabase;
 import com.google.gson.Gson;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

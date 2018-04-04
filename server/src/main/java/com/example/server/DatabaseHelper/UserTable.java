@@ -112,9 +112,10 @@ public class UserTable {
     public static void createUser(User user) throws SQLException {
         //TODO: implement
         Connection db = PotatOsDatabase.getDbConnection();
-        PreparedStatement query = db.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (" +
-            ""
-
+        PreparedStatement query = db.prepareStatement("INSERT INTO " + TABLE_NAME + " " +
+            UserTable.COLUMN_EMAIL + ", " +
+            UserTable.COLUMN_NAME + ", " +
+            UserTable.COLUMN_PASSWORD_HASH + " VALUES (?,?,?);");
         );
         System.out.println("User created ... " + user.getName());
     }
