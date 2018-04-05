@@ -1,28 +1,26 @@
 package com.example.common;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date; // for Close time
 
 public class Quiz {
     private String quizName; // quiz name text
     private String password; // quiz password
-    private Question[] questions; // question storage TODO switch to array list
+    private ArrayList<Question> questions; // question storage
     private Date closeTime; // date that quiz close
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
-    private int pointsEarned; // points for correct answers TODO implement method to tally up earned points based on correct answers
-    private int pointsPossible; // points possible TODO implement method to tally up points based on questions' individual values
     private Boolean submitted; // true if quiz was submitted on time
 
     private int quizId; //database id
-    public Quiz(String quizName, String password, Question[] questions, Date closeTime, Double timer, User owner, int pointsEarned, int pointsPossible, boolean submitted) {
+    public Quiz(String quizName, String password, ArrayList<Question> questions, Date closeTime, Double timer, User owner, boolean submitted) {
         this.quizName = quizName;
         this.password = password;
         this.questions = questions;
         this.closeTime = closeTime;
         this.timer = timer;
         this.owner = owner;
-        this.pointsEarned = pointsEarned;
-        this.pointsPossible = pointsPossible;
         this.submitted = submitted;
     } // basic constructor
 
@@ -33,8 +31,6 @@ public class Quiz {
         this.closeTime = null;
         this.timer = 0.0;
         this.owner = null;
-        this.pointsEarned = 0;
-        this.pointsPossible = 0;
         this.submitted = false;
     } // default constructor
 
@@ -53,10 +49,10 @@ public class Quiz {
         this.password = password;
     }
 
-    public Question[] getQuestions() {
+    public ArrayList<Question> getQuestions() {
         return questions;
     }
-    public void setQuestions(Question[] questions) {
+    public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
     }
 
@@ -82,21 +78,23 @@ public class Quiz {
     }
 
     public Double getGrade() {
-        return Double.valueOf(pointsEarned/pointsPossible);
-    } // value of grade is calculated based off points earned and total points TODO possibly round to 2 decimal points
+        return Double.valueOf(this.getPointsEarned()/this.getPointsPossible());
+    } // value of grade is calculated based off points earned and total points
 
     public int getPointsEarned() {
+        int pointsEarned = 0;
+        for (int i = 0; i < questions.size(); i++) {
+           if (questions.get(i).getCorrect()) {pointsEarned += questions.get(i).getPointValue();}
+        }
         return pointsEarned;
-    }
-    public void setPointsEarned(int pointsEarned) {
-        this.pointsEarned = pointsEarned;
     }
 
     public int getPointsPossible() {
+        int pointsPossible = 0;
+        for (int i = 0; i < questions.size(); i++) {
+           pointsPossible += questions.get(i).getPointValue();
+        }
         return pointsPossible;
-    }
-    public void setPointsPossible(int pointsPossible) {
-        this.pointsPossible = pointsPossible;
     }
 
     public Boolean getSubmitted() {
