@@ -45,13 +45,15 @@ public class ClassResource {
     @Path(ClassREST.GET_CLASSES_FOR_USER_ID + "/{id}")
     public Response getClassesForUserId(@PathParam("id") int id) {
         Gson gson = new Gson();
+        try {
+            return Response.status(Response.Status.OK)
+                    .entity(
+                            gson.toJson(ClassTable.getClassesForUserId(id))
+                    )
+                    .build();
 
-        Response rs = Response.status(Response.Status.OK)
-                .entity(
-                        gson.toJson(ClassTable.getClassesForUserId(id))
-                )
-                .build();
-
-        return rs;
+        } catch (SQLException ex) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 }
