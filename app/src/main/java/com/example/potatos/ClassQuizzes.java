@@ -19,8 +19,8 @@ public class ClassQuizzes extends Activity {
         setContentView(R.layout.activity_class_quizzes);
 
         Resources res = getResources();
-        quizListView = findViewById(R.id.quizNameListView);
-        quizzes = res.getStringArray(R.array.quizNames);
+       // quizListView = findViewById(R.id.quizNameListView);
+        //quizzes = res.getStringArray(R.array.quizNames);
 
         AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
         quizListView.setAdapter(quizAdapter);
