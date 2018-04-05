@@ -1,14 +1,17 @@
 package com.example.common;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class User {
-    private Class[] classesIn; // class user is in storage TODO switch to array list
-    private Class[] classesOwned; // owned class storage for user TODO switch to array list
+    private ArrayList<Class> classesIn; // class user is in storage
+    private ArrayList<Class> classesOwned; // owned class storage for user TODO only teachers can own quizzes
     private String name; // user name
     private String email; // user email (used for sign in)
     private String passwordHash; // user password
     private int id; // user id
 
-    public User(Class[] classesIn, Class[] classesOwned, String name, String email, String passwordHash, int id){
+    public User(ArrayList<Class> classesIn, ArrayList<Class> classesOwned, String name, String email, String passwordHash, int id){
         this.classesIn =classesIn;
         this.classesOwned = classesOwned;
         this.name = name;
@@ -41,17 +44,17 @@ public class User {
         this.id = id;
     }
 
-    public Class[] getClassesIn() {
+    public ArrayList<Class> getClassesIn() {
         return classesIn;
     }
-    public void setClassesIn(Class[] classesIn) {
+    public void setClassesIn(ArrayList<Class> classesIn) {
         this.classesIn = classesIn;
     }
 
-    public Class[] getClassesOwned() {
+    public ArrayList<Class> getClassesOwned() {
         return classesOwned;
     }
-    public void setClassesOwned(Class[] classesOwned) {
+    public void setClassesOwned(ArrayList<Class> classesOwned) {
         this.classesOwned = classesOwned;
     }
 

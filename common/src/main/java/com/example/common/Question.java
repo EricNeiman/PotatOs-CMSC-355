@@ -3,14 +3,12 @@ package com.example.common;
 public class Question {
     private String prompt; // question text
     private QuestionImage image; // picture for question
-    private Boolean correct; // true if user selected correct answer
     private Answer[] answers; // 4 answer objects attached
     private int pointValue; // points possible for question
 
     public Question(String prompt, QuestionImage image, Boolean correct, Answer[] answers, int pointValue) {
         this.prompt = prompt;
         this.image =  image;
-        this.correct = correct;
         this.answers = answers;
         this.pointValue = pointValue;
     } // basic constructor
@@ -18,7 +16,6 @@ public class Question {
     public Question() {
         this.prompt = "";
         this.image =  null;
-        this.correct = false;
         this.answers = null;
         this.pointValue = 0;
     } // default constructor
@@ -39,10 +36,12 @@ public class Question {
     }
 
     public Boolean getCorrect() {
-        return correct;
-    }
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i].getSelected() && answers[i].getCorrect()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Answer[] getAnswers() {

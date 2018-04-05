@@ -2,15 +2,17 @@ package com.example.common;
 
 import com.example.common.REST.UserREST;
 
+import java.util.ArrayList;
+
 public class Class {
     private int ownerId; // class owner user object
     private String className; // class name text
     private String classCode; // class code text
-    private Quiz[] quizzes; // quiz storage for class TODO switch to array list
-    private User[] users; // user(student) storage for the class TODO switch to array list
+    private ArrayList<Quiz> quizzes; // quiz storage for class TODO switch to array list
+    private ArrayList<User> users; // user(student) storage for the class TODO switch to array list
     private int classID; //the class ID is assigned by the database and should be used in api calls
 
-    public Class(int ownerId, String className, String classCode, Quiz[] quizzes, User[] users){
+    public Class(int ownerId, String className, String classCode, ArrayList<Quiz> quizzes, ArrayList<User> users){
         this.ownerId = ownerId;
         this.className = className;
         this.classCode = classCode;
@@ -28,17 +30,17 @@ public class Class {
     } // default constructor
 
     // getters and setters for each variable
-    public User[] getUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
-    public void setUsers(User[] users) {
+    public void setUsers(ArrayList<User> users) {
         this.users = users;
     }
 
-    public Quiz[] getQuizzes() {
+    public ArrayList<Quiz> getQuizzes() {
         return quizzes;
     }
-    public void setQuizzes(Quiz[] quizzes) {
+    public void setQuizzes(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
     }
 
@@ -75,5 +77,4 @@ public class Class {
     public void setClassID(int classID) {
         this.classID = classID;
     }
-
 }
