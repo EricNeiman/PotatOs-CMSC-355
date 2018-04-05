@@ -48,6 +48,7 @@ public class QuizResource {
         System.out.println("Creating a user..." + message);
         Gson gson = new Gson();
         Response rs;
+
         try {
             Quiz quiz = gson.fromJson(message, Quiz.class);
             QuizTable.createQuiz(quiz);

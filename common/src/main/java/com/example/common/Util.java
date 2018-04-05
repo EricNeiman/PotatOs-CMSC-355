@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.math.BigInteger;
 
 public class Util {
-
     //for passwords
     public String sha256(String s)  {
         MessageDigest md = null;
@@ -19,5 +18,3 @@ public class Util {
         return String.format( "%064x", new BigInteger( 1, digest ) );
     }
 }
-
-
