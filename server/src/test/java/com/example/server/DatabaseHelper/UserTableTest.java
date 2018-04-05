@@ -48,8 +48,7 @@ class UserTableTest {
         Assert.assertEquals(cls.getClassName(), dbCls.getClassName());
         Assert.assertEquals(cls.getClassCode(), dbCls.getClassCode());
 
-
-//        User dbUsr = UserTable.getUserById(user.getId());
-//        Assert.assertNotEquals(null, dbUsr.getClassesIn());
+        User dbUsr = UserTable.getUserById(user.getId());
+        Assert.assertNotEquals(null, dbUsr.getClassesIn());
     }
 }

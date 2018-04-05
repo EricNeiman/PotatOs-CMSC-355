@@ -4,6 +4,7 @@ import com.example.common.REST.ClassUserPassRequest;
 import com.example.common.REST.UserREST;
 import com.example.common.User;
 import com.example.server.DatabaseHelper.UserTable;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -17,7 +18,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 public class UserResource {
-
     @POST
     @Path(UserREST.CREATE_USER)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -43,16 +43,15 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getUserByEmailPass(String message) {
         Gson gson = new Gson();
-
         ClassUserPassRequest form = gson.fromJson(message, ClassUserPassRequest.class);
 
-        User user = UserTable.getUserByEmailPass(form.email, form.passwordHash);
-        if (!(user==null)) {
+        try {
+            User user = UserTable.getUserByEmailPass(form.email, form.passwordHash);
             return Response.status(Response.Status.OK)
                     .entity(
                             gson.toJson(user)
                     ).build();
-        } else {
+        } catch (SQLException ex) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -61,15 +60,15 @@ public class UserResource {
     @Path(UserREST.GET_USER_BY_ID + "/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public static Response getById(@PathParam("id") int userID) {
-        Gson gson = new Gson();
-        User user = UserTable.getUserById(userID);
-        if (user==null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        } else {
+        try {
+            Gson gson = new Gson();
+            User user = UserTable.getUserById(userID);
             return Response.status(Response.Status.OK)
                     .entity(
                             gson.toJson(user)
                     ).build();
+        } catch (SQLException ex){
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 
@@ -78,9 +77,10 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(@PathParam("id") int id, String message) {
         Gson gson = new Gson();
-        if (UserTable.updateUser(gson.fromJson(message, User.class))) {
+        try {
+            UserTable.updateUser(gson.fromJson(message, User.class));
             return Response.status(Response.Status.OK).build();
-        } else {
+        } catch (SQLException ex) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }

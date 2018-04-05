@@ -25,88 +25,77 @@ public class UserTable {
             COLUMN_NAME + " TEXT " +
             ");";
 
-    public static User getUserById(int id) {
-        try {
-            User user = new User();
-            Connection db = PotatOsDatabase.getDbConnection();
+    public static User getUserById(int id) throws SQLException {
+        User user = new User();
+        Connection db = PotatOsDatabase.getDbConnection();
 
-            PreparedStatement query = db.prepareStatement("SELECT  " +
-                    COLUMN_PASSWORD_HASH + ", " +
-                    COLUMN_EMAIL + ", " +
-                    COLUMN_NAME + ", " +
-                    " FROM "+ TABLE_NAME + " WHERE " + COLUMN_USER_ID + "=?;"
-            );
+        PreparedStatement query = db.prepareStatement("SELECT  " +
+                COLUMN_PASSWORD_HASH + ", " +
+                COLUMN_EMAIL + ", " +
+                COLUMN_NAME + " " +
+                " FROM "+ TABLE_NAME + " WHERE " + COLUMN_USER_ID + "=?;"
+        );
 
-            query.setInt(1, id);
+        query.setInt(1, id);
 
-            ResultSet cursor = query.executeQuery();
+        ResultSet cursor = query.executeQuery();
 
+        user.setPasswordHash(cursor.getString(1));
+        user.setEmail(cursor.getString(2));
+        user.setName(cursor.getString(3));
+
+        user.setClassesIn(ClassTable.getClassesForUserId(id));
+        return user;
+    }
+
+    public static User getUserByEmailPass(String email, String passwordHash) throws SQLException {
+        User user = new User();
+        Connection db = PotatOsDatabase.getDbConnection();
+
+        PreparedStatement query = db.prepareStatement("SELECT  " +
+                COLUMN_PASSWORD_HASH + ", " +
+                COLUMN_EMAIL + ", " +
+                COLUMN_NAME + ", " +
+                " FROM "+ TABLE_NAME +
+                " WHERE " +
+                COLUMN_PASSWORD_HASH + "=? " +
+                " AND " + COLUMN_EMAIL + "=? ;"
+        );
+
+        query.setString(1, passwordHash);
+        query.setString(2, email);
+
+        ResultSet cursor = query.executeQuery();
+
+        if (cursor.first()) {
             user.setPasswordHash(cursor.getString(1));
             user.setEmail(cursor.getString(2));
             user.setName(cursor.getString(3));
-
             return user;
-        } catch (SQLException ex) {
+        } else {
             return null;
         }
     }
 
-    public static User getUserByEmailPass(String email, String passwordHash) {
-        try {
-            User user = new User();
-            Connection db = PotatOsDatabase.getDbConnection();
+    public static boolean updateUser(User newUserInfo) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
 
-            PreparedStatement query = db.prepareStatement("SELECT  " +
-                    COLUMN_PASSWORD_HASH + ", " +
-                    COLUMN_EMAIL + ", " +
-                    COLUMN_NAME + ", " +
-                    " FROM "+ TABLE_NAME +
-                    " WHERE " +
-                    COLUMN_PASSWORD_HASH + "=? " +
-                    " AND " + COLUMN_EMAIL + "=? ;"
-            );
+        User user = new User();
 
-            query.setString(1, passwordHash);
-            query.setString(2, email);
+        PreparedStatement query = db.prepareStatement("UPDATE " + TABLE_NAME + " SET " +
+                COLUMN_PASSWORD_HASH + "=?, " +
+                COLUMN_EMAIL + "=?, " +
+                COLUMN_NAME + "=?, " +
+                " WHERE " + COLUMN_USER_ID + "=?;"
+        );
 
-            ResultSet cursor = query.executeQuery();
+        query.setString(1, user.getPasswordHash());
+        query.setString(2, user.getEmail());
+        query.setString(3, user.getName());
+        query.setInt(4, user.getId());
 
-            if (cursor.first()) {
-                user.setPasswordHash(cursor.getString(1));
-                user.setEmail(cursor.getString(2));
-                user.setName(cursor.getString(3));
-                return user;
-            } else {
-                return null;
-            }
-        } catch (SQLException ex) {
-            return null;
-        }
-    }
-
-    public static boolean updateUser(User newUserInfo) {
-        try {
-            Connection db = PotatOsDatabase.getDbConnection();
-
-            User user = new User();
-
-            PreparedStatement query = db.prepareStatement("UPDATE " + TABLE_NAME + " SET " +
-                    COLUMN_PASSWORD_HASH + "=?, " +
-                    COLUMN_EMAIL + "=?, " +
-                    COLUMN_NAME + "=?, " +
-                    " WHERE " + COLUMN_USER_ID + "=?;"
-            );
-
-            query.setString(1, user.getPasswordHash());
-            query.setString(2, user.getEmail());
-            query.setString(3, user.getName());
-            query.setInt(4, user.getId());
-
-            query.execute();
-            return true;
-        } catch (SQLException ex) {
-            return false;
-        }
+        query.execute();
+        return true;
     }
 
     //the ID will be set in the passed class

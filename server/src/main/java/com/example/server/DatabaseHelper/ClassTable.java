@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.example.common.Class;
 import com.example.common.User;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 
 /**
  * Created by vita on 4/3/18.
@@ -48,7 +49,6 @@ public class ClassTable {
         cls.setClassID(newId);
     }
 
-
     public static Class getClassById(int id) throws SQLException {
         Connection db = PotatOsDatabase.getDbConnection();
         PreparedStatement query = db.prepareStatement("SELECT " +
@@ -62,7 +62,7 @@ public class ClassTable {
         query.setInt(1, id);
 
         ResultSet rs = query.executeQuery();
-        if (rs.next()) {
+        if (!rs.isAfterLast()) {
             Class cls = new Class();
             cls.setClassCode(rs.getString(1));
             cls.setClassName(rs.getString(2));
@@ -76,42 +76,38 @@ public class ClassTable {
     }
 
 
-    public static Class[] getClassesForUserId(int userID) {
-        try {
-            Connection db = PotatOsDatabase.getDbConnection();
-            PreparedStatement query = db.prepareStatement("SELECT " +
-                EnrollmentsTable.COLUMN_CLASS_ID + ", " +
-                ClassTable.COLUMN_CLASS_CODE + ", " +
-                ClassTable.COLUMN_CLASS_NAME + ", " +
-                ClassTable.COLUMN_OWNER_ID + //", " +
-                " FROM " + EnrollmentsTable.TABLE_NAME +
-                " LEFT JOIN " + ClassTable.TABLE_NAME +
-                " ON " + ClassTable.COLUMN_CLASS_ID + "=" + EnrollmentsTable.COLUMN_CLASS_ID +
-                " WHERE " + EnrollmentsTable.COLUMN_USER_ID + "=?;"
+    public static Class[] getClassesForUserId(int userID) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
+        PreparedStatement query = db.prepareStatement("SELECT " +
+            EnrollmentsTable.TABLE_NAME + "." + EnrollmentsTable.COLUMN_CLASS_ID + ", " +
+            ClassTable.COLUMN_CLASS_CODE + ", " +
+            ClassTable.COLUMN_CLASS_NAME + ", " +
+            ClassTable.COLUMN_OWNER_ID +
+            " FROM " + EnrollmentsTable.TABLE_NAME +
+            " INNER JOIN " + ClassTable.TABLE_NAME +
+            " ON " + ClassTable.TABLE_NAME + "." + ClassTable.COLUMN_CLASS_ID + "=" + EnrollmentsTable.TABLE_NAME + "." + EnrollmentsTable.COLUMN_CLASS_ID +
+            " WHERE " + EnrollmentsTable.COLUMN_USER_ID + "=?;"
 
-            );
+        );
 
-            query.setInt(1, userID);
-            ResultSet rs = query.executeQuery();
+        query.setInt(1, userID);
+        ResultSet rs = query.executeQuery();
+        ArrayList<Class> classes = new ArrayList<Class>();
 
-            if (rs.next()) {
-                return null; //the user is not enrolled in any classes
-            }
-            ArrayList<Class> classes = new ArrayList<Class>();
-            do {
-                Class cls = new Class();
-                cls.setClassID(rs.getInt(1));
-                cls.setClassCode(rs.getString(2));
-                cls.setClassName(rs.getString(3));
-                cls.setOwnerId(rs.getInt(4));
-                classes.add(cls);
-            } while (!rs.next());
+        while (!rs.isAfterLast()) {
+            Class cls = new Class();
+            cls.setClassID(rs.getInt(1));
+            cls.setClassCode(rs.getString(2));
+            cls.setClassName(rs.getString(3));
+            cls.setOwnerId(rs.getInt(4));
+            classes.add(cls);
+            rs.next();
+        }
 
+        if (classes.size() > 0) {
             return classes.toArray(new Class[classes.size()]);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+        } else {
+            return null; //the user is not enrolled in any classes
         }
     }
 
@@ -128,5 +124,4 @@ public class ClassTable {
         query.setInt(2, cls.getClassID());
         query.execute();
     }
-
 }
