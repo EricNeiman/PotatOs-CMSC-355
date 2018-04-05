@@ -12,7 +12,7 @@ import android.widget.TextView;
  *
  */
 
-public class ClassAdapter extends BaseAdapter {
+public class AdapterClass extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private String[] classNames;
@@ -20,7 +20,7 @@ public class ClassAdapter extends BaseAdapter {
     private String[] numOfOpenQuizzes;
     private String[] numOfStudents;
 
-    ClassAdapter(Context c, String[] classNames, String[] numOfQuizzes,
+    AdapterClass(Context c, String[] classNames, String[] numOfQuizzes,
                  String[] numOfOpenQuizzes, String[] numOfStudents){
         this.classNames = classNames;
         this.numOfQuizzes = numOfQuizzes;
@@ -47,7 +47,7 @@ public class ClassAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = mInflater.inflate(R.layout.class_listview_detail, null);
-        TextView classNameTextView = v.findViewById(R.id.classNameTextView);
+        TextView classNameTextView = v.findViewById(R.id.quizNameTextView);
         TextView numQuizzesTextView = v.findViewById(R.id.numQuizzesTextView);
         TextView numOpenQuizzesTextView = v.findViewById(R.id.numOpenQuizzesTextView);
         TextView numOfStudentTextView = v.findViewById(R.id.numStudentsTextView);
