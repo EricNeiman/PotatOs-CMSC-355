@@ -47,7 +47,7 @@ public class AdapterClass extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = mInflater.inflate(R.layout.class_listview_detail, null);
-        TextView classNameTextView = v.findViewById(R.id.quizNameTextView);
+       //TextView classNameTextView = v.findViewById(R.id.quizNameTextView);
         TextView numQuizzesTextView = v.findViewById(R.id.numQuizzesTextView);
         TextView numOpenQuizzesTextView = v.findViewById(R.id.numOpenQuizzesTextView);
         TextView numOfStudentTextView = v.findViewById(R.id.numStudentsTextView);
@@ -57,7 +57,7 @@ public class AdapterClass extends BaseAdapter {
         String openQuiz = numOfOpenQuizzes[position];
         String student = numOfStudents[position];
 
-        classNameTextView.setText(name);
+        //classNameTextView.setText(name);
         numQuizzesTextView.setText(quiz);
         numOpenQuizzesTextView.setText(openQuiz);
         numOfStudentTextView.setText(student);
