@@ -2,7 +2,8 @@ package com.example.server;
 
 import javax.ws.rs.ext.RuntimeDelegate;
 
-import com.example.common.PotatOsApi;
+import com.example.common.REST.PotatOsApi;
+import com.example.server.DatabaseHelper.PotatOsDatabase;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -27,7 +28,12 @@ public class Server {
 
     public static void main(String[] args) {
         try {
+            if (!PotatOsDatabase.checkTables()) {
+                return; //unable to create tables
+            }
+
             System.out.println("Starting web server...");
+            PotatOsDatabase.checkTables();
             startServer();
             System.out.println("The server is now running.  You can get a heartbeat by visiting " + PotatOsApi.API_PATH + PotatOsApi.HEARTBEAT);
             System.out.println("If you are debugging, then check " + "http://localhost:8080/api/heartbeat");
@@ -35,6 +41,6 @@ public class Server {
             Thread.currentThread().join();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+    }
     }
 }

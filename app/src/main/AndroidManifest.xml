@@ -21,5 +21,4 @@
         <activity android:name=".QuizQuestions" />
         <activity android:name=".Question"></activity>
     </application>
-
 </manifest>

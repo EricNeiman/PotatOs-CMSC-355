@@ -1,21 +1,90 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext.junit4Version        = '4.12'
+ext.junitVintageVersion  = '5.1.0'
+ext.junitPlatformVersion = '1.1.0'
+ext.junitJupiterVersion  = '5.1.0'
+ext.log4jVersion         = '2.9.0'
+
+
+
 apply plugin: 'java-library'
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
 apply plugin: 'java-library-distribution'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
+
+
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.compilerArgs += '-parameters'
+}
+
+
+
+junitPlatform {
+    // platformVersion '1.1.0'
+    filters {
+        engines {
+            // include 'junit-jupiter', 'junit-vintage'
+            // exclude 'custom-engine'
+        }
+        tags {
+            // include 'fast'
+            exclude 'slow'
+        }
+        // includeClassNamePattern '.*Test'
+    }
+    // configurationParameter 'junit.jupiter.conditions.deactivate', '*'
+    // enableStandardTestTask true
+    // reportsDir file('build/test-results/junit-platform') // this is the default
+    logManager 'org.apache.logging.log4j.jul.LogManager'
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':common')
+
     compile project(':common')
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.18'
     compile 'org.glassfish.jersey.containers:jersey-container-jdk-http:2.18'
     compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.18'
-
     compile 'org.xerial:sqlite-jdbc:3.21.0'
+
+
+    // JUnit Jupiter API and TestEngine implementation
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+
+    // If you also want to support JUnit 3 and JUnit 4 tests
+    testCompile("junit:junit:${junit4Version}")
+    testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
+
+    // To use Log4J's LogManager
+    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
+    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
+
+    // Only needed to run tests in an (IntelliJ) IDE(A) that bundles an older version
+    testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
+
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
 
 jar {
