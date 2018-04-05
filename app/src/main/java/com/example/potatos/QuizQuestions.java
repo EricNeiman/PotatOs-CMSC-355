@@ -18,13 +18,13 @@ public class QuizQuestions extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_questions);
+        //setContentView(R.layout.activity_quiz_questions);
 
         Resources res = getResources();
-        questListView = findViewById(R.id.questionListView);
-        numberOrder = res.getStringArray(R.array.numberOrder);
-        pointValues = res.getStringArray(R.array.pointValues);
-        questionAnswered = res.getStringArray(R.array.questionAnswered);
+       // questListView = findViewById(R.id.questionListView);
+       // numberOrder = res.getStringArray(R.array.numberOrder);
+       // pointValues = res.getStringArray(R.array.pointValues);
+       // questionAnswered = res.getStringArray(R.array.questionAnswered);
 
         AdapterQuestion questionAdapter = new AdapterQuestion(this, numberOrder, pointValues, questionAnswered);
         questListView.setAdapter(questionAdapter);
