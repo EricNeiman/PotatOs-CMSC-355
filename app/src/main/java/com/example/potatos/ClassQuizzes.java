@@ -1,9 +1,12 @@
 package com.example.potatos;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,5 +36,15 @@ public class ClassQuizzes extends Activity {
                 startActivity(showQuizQuestions);
             }
         });
+    }
+
+    public  void onCreateQuizclick(View v) {
+        if(v.getId() == R.id.BcreateQuiz) {
+
+
+            Intent i = new Intent(this, QuizInfo.class);
+            startActivity(i);
+        }
+
     }
 }

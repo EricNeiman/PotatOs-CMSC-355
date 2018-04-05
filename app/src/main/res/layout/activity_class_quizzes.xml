@@ -23,10 +23,11 @@
         app:srcCompat="@android:drawable/editbox_background" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/BcreateQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:onClick="onCreateQuizclick"
+        android:text="Create a quiz"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="5dp" />
 </android.support.constraint.ConstraintLayout>
