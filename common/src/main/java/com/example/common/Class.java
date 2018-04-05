@@ -8,8 +8,8 @@ public class Class {
     private int ownerId; // class owner user object
     private String className; // class name text
     private String classCode; // class code text
-    private ArrayList<Quiz> quizzes; // quiz storage for class TODO switch to array list
-    private ArrayList<User> users; // user(student) storage for the class TODO switch to array list
+    private ArrayList<Quiz> quizzes; // quiz storage for class
+    private ArrayList<User> users; // user(student) storage for the class
     private int classID; //the class ID is assigned by the database and should be used in api calls
 
     public Class(int ownerId, String className, String classCode, ArrayList<Quiz> quizzes, ArrayList<User> users){
