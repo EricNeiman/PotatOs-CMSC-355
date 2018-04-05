@@ -58,7 +58,7 @@ public class Quiz {
 
     public Date getCloseTime() {
         return closeTime;
-    }
+    } // TODO kick out user when close time passes
     public void setCloseTime(Date closeTime) {
         this.closeTime = closeTime;
     }
