@@ -18,7 +18,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 public class UserResource {
-
     @POST
     @Path(UserREST.CREATE_USER)
     @Consumes(MediaType.APPLICATION_JSON)
