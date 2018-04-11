@@ -1,14 +1,10 @@
 package com.example.potatos;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class ClassQuizzes extends Activity {
@@ -25,17 +21,17 @@ public class ClassQuizzes extends Activity {
        // quizListView = findViewById(R.id.quizNameListView);
         //quizzes = res.getStringArray(R.array.quizNames);
 
-        AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
-        quizListView.setAdapter(quizAdapter);
+        //AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
+       // quizListView.setAdapter(quizAdapter);
 
-        quizListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*quizListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent showQuizQuestions = new Intent(getApplicationContext(), QuizQuestions.class);
                 showQuizQuestions.putExtra("com.example.potatos.QUIZ_INDEX", position);
                 startActivity(showQuizQuestions);
             }
-        });
+        });*/
     }
 
     public  void onCreateQuizclick(View v) {
