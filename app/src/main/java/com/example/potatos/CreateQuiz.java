@@ -11,7 +11,6 @@ public class CreateQuiz extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createquiz);
     }
-
     public  void onAddquestionClick(View v) {
         if(v.getId() == R.id.Baddquestion) {
 

@@ -13,12 +13,12 @@
         android:text="QuizName" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/TFquizname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="enter name of quiz here" />
+        android:hint="@string/enterNameofQuiz"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editText7"
@@ -29,12 +29,12 @@
         android:text="Password" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/TFpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="enter password here" />
+        android:hint="@string/enterPassword"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/Bnewquiz"

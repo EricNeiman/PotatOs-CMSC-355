@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class QuizInfo extends Activity {
     @Override
@@ -17,7 +18,10 @@ public class QuizInfo extends Activity {
     public  void onCreatenewQuizClick(View v) {
         if(v.getId() == R.id.Bnewquiz) {
 
-            Intent i = new Intent(QuizInfo.this, CreateQuiz.class);
+            EditText a = (EditText)findViewById(R.id.TFquizname);
+            String str = a.getText().toString();
+            Intent i = new Intent(QuizInfo.this, ClassQuizzes.class);
+            i.putExtra("Quizname", str);
             startActivity(i);
         }
 
