@@ -19,9 +19,9 @@
         <activity android:name=".TeacherOverview" />
         <activity android:name=".CreateQuiz" />
         <activity android:name=".QuizInfo" />
+        <activity android:name=".AddText" />
         <activity android:name=".TypeofQuestion" />
         <activity android:name=".AddAnswer" />
-        <activity android:name=".AddText" />
         <activity android:name=".ClassQuizzes"></activity>
     </application>
 </manifest>
