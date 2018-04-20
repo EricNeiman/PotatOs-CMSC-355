@@ -19,4 +19,13 @@ public class CreateQuiz extends Activity {
         }
 
     }
+
+    public  void onSaveQuizClick(View v) {
+        if(v.getId() == R.id.bSaveQuiz) {
+
+            Intent i = new Intent(CreateQuiz.this, ClassQuizzes.class);
+            startActivity(i);
+        }
+
+    }
 }

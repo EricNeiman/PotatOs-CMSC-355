@@ -26,6 +26,19 @@ public class TypeofQuestion extends Activity {
         String quiztext = getIntent().getStringExtra("Questiontext");
         TextView tv = (TextView)findViewById(R.id.TVquestion);
         tv.setText(quiztext);
+        String firstanswertext = getIntent().getStringExtra("firstAnswertext");
+        TextView tv1 = (TextView)findViewById(R.id.TVfirstAnswer);
+        tv1.setText(firstanswertext);
+        String secondanswertext = getIntent().getStringExtra("secondAnswertext");
+        TextView tv2 = (TextView)findViewById(R.id.TVsecondAnswer);
+        tv2.setText(secondanswertext);
+        String thirdanswertext = getIntent().getStringExtra("thirdAnswertext");
+        TextView tv3 = (TextView)findViewById(R.id.TVthirdAnswer);
+        tv3.setText(thirdanswertext);
+        String fourthanswertext = getIntent().getStringExtra("fourthAnswertext");
+        TextView tv4 = (TextView)findViewById(R.id.TVfourthAnswer);
+        tv4.setText(fourthanswertext);
+
         imageView = (ImageView)findViewById(R.id.imageView3);
         Button button = (Button)findViewById(R.id.Bimage);
         button.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +70,7 @@ public class TypeofQuestion extends Activity {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            ImageView myImageView = (ImageView) findViewById(R.id.imageView);
+            ImageView myImageView = (ImageView) findViewById(R.id.imageView3);
             imageView.setImageBitmap(bitmap);
         }
     }
@@ -77,6 +90,18 @@ public class TypeofQuestion extends Activity {
         }
 
     }
+
+    public void onSaveQuestionClick(View v){
+        if(v.getId() == R.id.bSaveQuestion) {
+            Intent i = new Intent(this, CreateQuiz.class);
+            startActivity(i);
+        }
+
+    }
+
+
+
+
 
 
 

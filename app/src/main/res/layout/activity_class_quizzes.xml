@@ -8,41 +8,45 @@
     android:orientation="vertical"
     tools:context="com.example.potatos.ClassQuizzes">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/background" />
-
     <Button
         android:id="@+id/BcreateQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
         android:onClick="onCreateQuizclick"
         android:text="Create a quiz" />
 
+
+    <Button
+        android:id="@+id/BLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onLogOutClick"
+        android:text="Log Out" />
+
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_width="380dp"
+        android:layout_height="100dp">
 
         <EditText
             android:id="@+id/TVquizname"
-            android:layout_width="131dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/emptyString" />
 
         <Button
+            android:id="@+id/bGrades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onSeeGradesClick"
+            android:text="See Grades" />
+
+        <Button
             android:id="@+id/bGotoQuiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="onGotoQuizClick"
             android:text="go to quiz" />
     </LinearLayout>

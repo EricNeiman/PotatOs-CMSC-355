@@ -14,6 +14,7 @@ public class ClassQuizzes extends Activity {
     ListView quizListView;
     String[] quizzes;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +25,10 @@ public class ClassQuizzes extends Activity {
        // quizListView = findViewById(R.id.quizNameListView);
         //quizzes = res.getStringArray(R.array.quizNames);
 
-        //AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
-       // quizListView.setAdapter(quizAdapter);
+       /* AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
+        quizListView.setAdapter(quizAdapter);
 
-        /*quizListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        quizListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent showQuizQuestions = new Intent(getApplicationContext(), QuizQuestions.class);
@@ -58,4 +59,22 @@ public class ClassQuizzes extends Activity {
             startActivity(i);
         }
     }
+
+    public void onLogOutClick(View v ) {
+        if(v.getId() == R.id.BLogOut)  {
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+
+        }
+    }
+
+    public void onSeeGradesClick (View v) {
+        if(v.getId() == R.id.bGrades)  {
+            Intent i = new Intent(this, View_grades.class);
+            startActivity(i);
+
+        }
+    }
+
+
 }

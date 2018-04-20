@@ -6,24 +6,13 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/Baddquestion"
+        android:id="@+id/bGotoQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="81dp"
-        android:onClick="onAddquestionClick"
-        android:text="Add a question"
+        android:layout_marginTop="36dp"
+        android:onClick="onGotoQuizClick"
+        android:text="go to quiz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bSaveQuiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:onClick="onSaveQuizClick"
-        android:text="Save Quiz"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

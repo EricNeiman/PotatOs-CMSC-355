@@ -1,63 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/bAddText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:onClick="onAddTextClick"
-        android:text="Add a Text" />
+        android:text="Add a Text"
+        app:layout_constraintBottom_toTopOf="@+id/bAddAnswer"
+        app:layout_constraintEnd_toEndOf="@+id/bAddAnswer" />
 
     <TextView
         android:id="@+id/TVquestion"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:text="@string/emptyString1"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TVsecondAnswer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TVfirstAnswer"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/emptyString2"
+        app:layout_constraintBottom_toBottomOf="@+id/TVthirdAnswer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVsecondAnswer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/emptyString1" />
+        android:text="@string/emptyString3"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVthirdAnswer"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="65dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/emptyString4"
+        app:layout_constraintBottom_toTopOf="@+id/Bimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVquestion" />
+
+    <TextView
+        android:id="@+id/TVfourthAnswer"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="69dp"
+        android:layout_marginTop="69dp"
+        android:text="@string/emptyString5"
+        app:layout_constraintBottom_toBottomOf="@+id/bAddText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVfirstAnswer" />
 
     <Button
         android:id="@+id/Bimage"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginStart="25dp"
         android:onClick="onAddImageClick"
-        android:text="Add an Image" />
-
-    <Button
-        android:id="@+id/bChart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onAddChartClick"
-        android:text="Add a chart" />
+        android:text="Add an Image or graph"
+        app:layout_constraintBottom_toTopOf="@+id/bSaveQuestion"
+        app:layout_constraintEnd_toEndOf="@+id/bSaveQuestion"
+        app:layout_constraintStart_toStartOf="@+id/TVfourthAnswer" />
 
     <Button
         android:id="@+id/bAddAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginBottom="218dp"
+        android:layout_marginEnd="43dp"
         android:onClick="onAddAnswerClick"
-        android:text="add answers" />
+        android:text="add answers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/bSaveQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginBottom="21dp"
+        android:layout_marginStart="16dp"
         android:onClick="onSaveQuestionClick"
-        android:text="Save question" />
+        android:text="Save question"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="34dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bAddAnswer">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -67,4 +123,4 @@
             app:srcCompat="@android:drawable/toast_frame" />
 
     </LinearLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
