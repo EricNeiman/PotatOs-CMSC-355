@@ -1,22 +1,25 @@
 package com.example.common;
 
 import java.util.ArrayList;
-import java.util.Date; // for Close time
+import java.util.Date; // for close time
+import java.time.LocalDateTime; // for is open
 
 public class Quiz {
     private String quizName; // quiz name text
     private String password; // quiz password
     private ArrayList<Question> questions; // question storage
-    private Date closeTime; // date that quiz close
+    private Date openTime; // date that the quiz closes
+    private Date closeTime; // date that the quiz closes
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
     private Boolean submitted; // true if quiz was submitted on time
-
     private int quizId; //database id
-    public Quiz(String quizName, String password, ArrayList<Question> questions, Date closeTime, Double timer, User owner, boolean submitted) {
+
+    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
         this.quizName = quizName;
         this.password = password;
         this.questions = questions;
+        this.openTime = openTime;
         this.closeTime = closeTime;
         this.timer = timer;
         this.owner = owner;
@@ -27,11 +30,19 @@ public class Quiz {
         this.quizName = "";
         this.password = "";
         this.questions = null;
+        this.openTime = null;
         this.closeTime = null;
         this.timer = 0.0;
         this.owner = null;
         this.submitted = false;
     } // default constructor
+
+    public boolean isOpen() {
+        if (java.time.LocalDateTime.now().isBefore(closeTime) && java.time.LocalDateTime.now().isAfter(openTime)) { // current time is between openTime and closeTime
+            return true;
+        }
+        return false;
+    } // TODO find a way convert from LocalDateTime.now() to type Date or vice versa
 
     // getters and setters for each variable
     public String getQuizName() {
@@ -53,6 +64,13 @@ public class Quiz {
     }
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
+    }
+
+    public Date getOpenTime() {
+        return openTime;
+    }
+    public void setOpenTime(Date openTime) {
+        this.openTime = openTime;
     }
 
     public Date getCloseTime() {
@@ -106,7 +124,6 @@ public class Quiz {
     public int getQuizId() {
         return quizId;
     }
-
     public void setQuizId(int quizId) {
         this.quizId = quizId;
     }
