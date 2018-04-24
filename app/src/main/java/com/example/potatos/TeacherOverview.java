@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.common.Class;
 import com.example.common.Quiz;
 import com.example.common.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class TeacherOverview extends Activity {
 
     ListView classListView;
     User user;
+    String json;
     String[] classes;
     int[] numOfQuizzes;
     int[] numOfOpenQuizzes;
@@ -30,7 +32,10 @@ public class TeacherOverview extends Activity {
 
         classListView = findViewById(R.id.classListView);
 
-        user = (User) getIntent().getSerializableExtra("com.example.potatoes.logIn");
+        Gson gson = new Gson();
+        json = getIntent().getStringExtra("com.example.potatoes.logIn");
+        user = gson.fromJson(json , User.class);
+
         ArrayList<Class> classList = user.getClassesIn();
         classes = new String[classList.size()];
         numOfQuizzes = new int[classList.size()];
@@ -71,7 +76,14 @@ public class TeacherOverview extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent showClassQuizzes = new Intent(getApplicationContext(), ClassQuizzes.class);
-                showClassQuizzes.putExtra("com.example.potatos.CLASS_INDEX", position);
+                Bundle extras = new Bundle();
+                extras.putInt("com.example.potatos.CLASS_INDEX", position);
+                extras.putString("com.example.potatoes.logIn", json);
+                Gson gson = new Gson();
+                String jsonClass = gson.toJson(classList.get(position));
+                extras.putString("com.example.potatoes.CLASS", jsonClass);
+
+                showClassQuizzes.putExtras(extras);
                 startActivity(showClassQuizzes);
             }
         });

@@ -1,55 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tbdImage"
+    android:id="@+id/constr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.example.potatos.ClassQuizzes">
 
+    <ListView
+        android:id="@+id/quizNameListView"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
-        android:id="@+id/BcreateQuiz"
+        android:id="@+id/createQuizbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:onClick="onCreateQuizclick"
-        android:text="Create a quiz" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Create a quiz"
+        app:layout_constraintBottom_toTopOf="@+id/quizNameListView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
-        android:id="@+id/BLogOut"
+        android:id="@+id/logOutbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onLogOutClick"
-        android:text="Log Out" />
-
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="100dp">
-
-        <EditText
-            android:id="@+id/TVquizname"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/emptyString" />
-
-        <Button
-            android:id="@+id/bGrades"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onSeeGradesClick"
-            android:text="See Grades" />
-
-        <Button
-            android:id="@+id/bGotoQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onGotoQuizClick"
-            android:text="go to quiz" />
-    </LinearLayout>
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Log Out"
+        app:layout_constraintBottom_toTopOf="@+id/quizNameListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

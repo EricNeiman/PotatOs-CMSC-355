@@ -4,7 +4,7 @@
     <string name="logIn">Log In</string>
     <string name="createAc">Create Account</string>
     <string name="password">Password</string>
-    <string name="username">Username</string>
+    <string name="username">Email Address</string>
     <string name="enterNameofQuiz">Enter Name of Quiz</string>
     <string name="enterPassword">Enter Password</string>
     <string name="enterTextofQuestion">Enter Text of Question</string>
@@ -25,28 +25,4 @@
     <string name="emptyString3" />
     <string name="emptyString4" />
     <string name="emptyString5" />
-
-    <string-array name="classnames">
-        <item>First Class</item>
-        <item>Second Class</item>
-        <item>Third Class</item>
-    </string-array>
-
-    <string-array name="numOfQuizzes">
-        <item>3</item>
-        <item>0</item>
-        <item>2</item>
-    </string-array>
-
-    <string-array name="numOfOpenQuizzes">
-        <item>1</item>
-        <item>0</item>
-        <item>0</item>
-    </string-array>
-
-    <string-array name="numOfStudents">
-        <item>20</item>
-        <item>16</item>
-        <item>15</item>
-    </string-array>
 </resources>
