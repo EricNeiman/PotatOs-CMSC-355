@@ -4,7 +4,7 @@
     <string name="logIn">Log In</string>
     <string name="createAc">Create Account</string>
     <string name="password">Password</string>
-    <string name="username">Username</string>
+    <string name="email">Email Address</string>
     <string name="background">Background</string>
     <string name="className">ClassName</string>
     <string name="numQuiz">#Quizzes</string>

@@ -5,36 +5,20 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editText5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="QuizName" />
-
-    <EditText
         android:id="@+id/editText6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="enter name of quiz here" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Password" />
+        android:hint="Quiz Name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editText8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="enter password here" />
+        android:hint="Password"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/Bnewquiz"
