@@ -7,31 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.common.REST.PotatOsApi;
 import com.example.common.User;
 import com.google.gson.Gson;
 
 import static com.example.common.REST.UserREST.getByEmailPass;
 
 public class MainActivity extends AppCompatActivity {
-
-    public  void onLogInClick(View v) {
-        if(v.getId() == R.id.logInBtn) {
-
-            Intent i = new Intent(MainActivity.this, ClassQuizzes.class);
-            startActivity(i);
-        }
-
-    }
-
-    public  void onCreateAccountClick(View v) {
-        if(v.getId() == R.id.newAccountBtn) {
-
-            Intent i = new Intent(MainActivity.this, CreateAccount.class);
-            startActivity(i);
-        }
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         String requestJson = gson.toJson(user);
 
                         Intent overviewTeacher = new Intent(getApplicationContext(), TeacherOverview.class);
-                        overviewTeacher.putExtra("com.example.potatoes.logIn", user);
+                        overviewTeacher.putExtra("com.example.potatoes.logIn", requestJson);
                         startActivity(overviewTeacher);
                     }
                 }
@@ -73,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         newAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
     }
