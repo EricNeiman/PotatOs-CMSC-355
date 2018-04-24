@@ -1,18 +1,19 @@
 package com.example.common;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User {
+    private boolean isTeacher; // true if user is a teacher
     private ArrayList<Class> classesIn; // class user is in storage
-    private ArrayList<Class> classesOwned; // owned class storage for user TODO only teachers can own quizzes
+    private ArrayList<Class> classesOwned; // owned class storage for user
     private String name; // user name
     private String email; // user email (used for sign in)
     private String passwordHash; // user password
     private int id; // user id
 
-    public User(ArrayList<Class> classesIn, ArrayList<Class> classesOwned, String name, String email, String passwordHash, int id){
-        this.classesIn =classesIn;
+    public User(boolean isTeacher,ArrayList<Class> classesIn, ArrayList<Class> classesOwned, String name, String email, String passwordHash, int id){
+        this.isTeacher = isTeacher;
+        this.classesIn = classesIn;
         this.classesOwned = classesOwned;
         this.name = name;
         this.email = email;
@@ -21,6 +22,7 @@ public class User {
     } // basic constructor
 
     public User(){
+        this.isTeacher = false;
         this.classesIn = null;
         this.classesOwned = null;
         this.name = "";
@@ -30,6 +32,13 @@ public class User {
     } // default constructor
 
     // getters and setters for each variable
+    public boolean getIsTeacher() {
+        return isTeacher;
+    }
+    public void setIsTeacher(boolean isTeacher) {
+        isTeacher = isTeacher;
+    }
+
     public String getName() {
         return name;
     }
