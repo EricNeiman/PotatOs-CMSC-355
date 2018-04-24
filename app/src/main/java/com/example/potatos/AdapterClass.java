@@ -16,12 +16,12 @@ public class AdapterClass extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private String[] classNames;
-    private String[] numOfQuizzes;
-    private String[] numOfOpenQuizzes;
-    private String[] numOfStudents;
+    private int[] numOfQuizzes;
+    private int[] numOfOpenQuizzes;
+    private int[] numOfStudents;
 
-    AdapterClass(Context c, String[] classNames, String[] numOfQuizzes,
-                 String[] numOfOpenQuizzes, String[] numOfStudents){
+    AdapterClass(Context c, String[] classNames, int[] numOfQuizzes,
+                 int[] numOfOpenQuizzes, int[] numOfStudents){
         this.classNames = classNames;
         this.numOfQuizzes = numOfQuizzes;
         this.numOfOpenQuizzes = numOfOpenQuizzes;
@@ -47,17 +47,17 @@ public class AdapterClass extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = mInflater.inflate(R.layout.class_listview_detail, null);
-       //TextView classNameTextView = v.findViewById(R.id.quizNameTextView);
+        TextView classNameTextView = v.findViewById(R.id.quizNameTextView);
         TextView numQuizzesTextView = v.findViewById(R.id.numQuizzesTextView);
         TextView numOpenQuizzesTextView = v.findViewById(R.id.numOpenQuizzesTextView);
         TextView numOfStudentTextView = v.findViewById(R.id.numStudentsTextView);
 
         String name = classNames[position];
-        String quiz = numOfQuizzes[position];
-        String openQuiz = numOfOpenQuizzes[position];
-        String student = numOfStudents[position];
+        int quiz = numOfQuizzes[position];
+        int openQuiz = numOfOpenQuizzes[position];
+        int student = numOfStudents[position];
 
-        //classNameTextView.setText(name);
+        classNameTextView.setText(name);
         numQuizzesTextView.setText(quiz);
         numOpenQuizzesTextView.setText(openQuiz);
         numOfStudentTextView.setText(student);
