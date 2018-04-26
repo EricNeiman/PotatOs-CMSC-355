@@ -38,11 +38,12 @@ public class Quiz {
     } // default constructor
 
     public boolean isOpen() {
-        if (java.time.LocalDateTime.now().isBefore(closeTime) && java.time.LocalDateTime.now().isAfter(openTime)) { // current time is between openTime and closeTime
+        if (closeTime.after(new Date()) && openTime.before(new Date())) { // current time is between openTime and closeTime
             return true;
+        } else {
+            return false;
         }
-        return false;
-    } // TODO find a way convert from LocalDateTime.now() to type Date or vice versa
+    }
 
     // getters and setters for each variable
     public String getQuizName() {

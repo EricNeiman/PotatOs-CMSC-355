@@ -76,7 +76,7 @@ public class ClassTable {
     }
 
 
-    public static Class[] getClassesForUserId(int userID) throws SQLException {
+    public static ArrayList<Class> getClassesForUserId(int userID) throws SQLException {
         Connection db = PotatOsDatabase.getDbConnection();
         PreparedStatement query = db.prepareStatement("SELECT " +
             EnrollmentsTable.TABLE_NAME + "." + EnrollmentsTable.COLUMN_CLASS_ID + ", " +
@@ -105,7 +105,7 @@ public class ClassTable {
         }
 
         if (classes.size() > 0) {
-            return classes.toArray(new Class[classes.size()]);
+            return classes;
         } else {
             return null; //the user is not enrolled in any classes
         }

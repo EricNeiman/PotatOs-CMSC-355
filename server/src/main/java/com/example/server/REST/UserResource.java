@@ -21,13 +21,16 @@ public class UserResource {
     @POST
     @Path(UserREST.CREATE_USER)
     @Consumes(MediaType.APPLICATION_JSON)
+    //returns the ID of the created user.  It is the only difference that needs to be returned.
     public Response createUser(String message) {
         System.out.println("Creating a user..." + message);
         Gson gson = new Gson();
         Response rs;
         try {
-            UserTable.createUser(gson.fromJson(message, User.class));
-            rs = Response.status(Response.Status.OK).build();
+            User user = gson.fromJson(message, User.class);
+            UserTable.createUser(user);
+
+            rs = Response.status(Response.Status.OK).entity(user.getId()).build();
         } catch (JsonSyntaxException ex) {
             System.out.println("Invalid json received.");
             rs = Response.status(Response.Status.BAD_REQUEST).build();
@@ -35,7 +38,7 @@ public class UserResource {
             System.out.println("SQL Error.");
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         }
-        return rs;  //todo should return the created user?
+        return rs;
     }
 
     @POST
@@ -81,6 +84,21 @@ public class UserResource {
             UserTable.updateUser(gson.fromJson(message, User.class));
             return Response.status(Response.Status.OK).build();
         } catch (SQLException ex) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    }
+
+    @POST
+    @Path(UserREST.DELETE_USER)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteUser(String message) {
+        Gson gson = new Gson();
+        int id = gson.fromJson(message, int.class);
+
+        try {
+            UserTable.deleteUserById(id);
+            return Response.status(Response.Status.OK).build();
+        } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }

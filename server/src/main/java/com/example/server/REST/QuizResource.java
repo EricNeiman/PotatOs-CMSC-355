@@ -45,7 +45,7 @@ public class QuizResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createQuiz(String message) {
-        System.out.println("Creating a user..." + message);
+        System.out.println("Creating a quiz..." + message);
         Gson gson = new Gson();
         Response rs;
 

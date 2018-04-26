@@ -24,7 +24,14 @@ class UserTableTest {
 
     @Test
     void createUser() throws SQLException {
-        User user = new User(null, null, "Jacob Draddy", "email@example.com", "asdfopjasdfopjasdoji", 0);
+        User user = new User(
+                false,
+                null,
+                null,
+                "Jacob Draddy",
+                "email@example.com",
+                "asdfopjasdfopjasdoji",
+                0);
         UserTable.createUser(user);
 
         Class cls = new Class();
