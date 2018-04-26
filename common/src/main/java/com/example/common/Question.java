@@ -5,12 +5,14 @@ public class Question {
     private QuestionImage image; // picture for question
     private Answer[] answers; // 4 answer objects attached
     private int pointValue; // points possible for question
+    private int id; //database id
 
-    public Question(String prompt, QuestionImage image, Boolean correct, Answer[] answers, int pointValue) {
+    public Question(String prompt, QuestionImage image, Boolean correct, Answer[] answers, int pointValue, int id) {
         this.prompt = prompt;
         this.image =  image;
         this.answers = answers;
         this.pointValue = pointValue;
+        this.id = id;
     } // basic constructor
 
     public Question() {
@@ -18,6 +20,7 @@ public class Question {
         this.image =  null;
         this.answers = null;
         this.pointValue = 0;
+        this.id = 0;
     } // default constructor
 
     // getters and setters for variables
@@ -57,4 +60,7 @@ public class Question {
     public int getPointValue() {
         return pointValue;
     }
+
+    public void setId(int id) { this.id = id; }
+    public int getId() { return id; }
 }

@@ -16,8 +16,7 @@ public class UserREST {
 
     //this one must have form data fields "email" and "passwordHash" set to the corresponding strings in the request
     public static final String GET_USER_BY_EMAIL_PASS = "getUserByEmailPass";
-    public static final String CREATE_QUIZ = "createQuiz";
-    public static final String GET_QUIZ_BY_ID = "getQuizById";
+
 
     public static User getByEmailPass(String email, String passwordHash) {
         Gson gson = new Gson();

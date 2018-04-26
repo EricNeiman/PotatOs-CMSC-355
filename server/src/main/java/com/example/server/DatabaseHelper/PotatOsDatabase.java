@@ -21,6 +21,7 @@ public class PotatOsDatabase {
         QuestionTable.CREATE_SQL,
         QuizTable.CREATE_SQL,
         EnrollmentsTable.CREATE_SQL,
+        AnswerTable.CREATE_SQL,
     };
 
     public static Connection getDbConnection() throws SQLException {
