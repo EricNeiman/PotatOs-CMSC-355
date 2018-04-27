@@ -22,12 +22,12 @@ public class QuizQuestions extends Activity {
 
         Resources res = getResources();
         questListView = findViewById(R.id.questionListView);
-        numberOrder = res.getStringArray();
+        /*numberOrder = res.getStringArray();
         pointValues = res.getStringArray();
         questionAnswered = res.getStringArray();
 
         AdapterQuestion questionAdapter = new AdapterQuestion(this, numberOrder, pointValues, questionAnswered);
-        questListView.setAdapter(questionAdapter);
+        questListView.setAdapter(questionAdapter);*/
 
         questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
