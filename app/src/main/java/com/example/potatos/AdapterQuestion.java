@@ -11,11 +11,11 @@ import android.widget.TextView;
 public class AdapterQuestion extends BaseAdapter {
 
     private LayoutInflater mInflater;
-    private String[] numbers;
-    private String[] points;
+    private int[] numbers;
+    private int[] points;
     private String[] answered;
 
-    AdapterQuestion(Context c, String[] number, String[] points, String[] answered){
+    AdapterQuestion(Context c, int[] number, int[] points, String[] answered){
         this.numbers = number;
         this.points = points;
         this.answered = answered;
@@ -44,8 +44,8 @@ public class AdapterQuestion extends BaseAdapter {
         TextView pointTextView = v.findViewById(R.id.pointsTextView);
         TextView answeredTextView = v.findViewById(R.id.answeredTextView);
 
-        String number = numbers[position];
-        String pointValue = points[position];
+        int number = numbers[position];
+        int pointValue = points[position];
         String answer = answered[position];
 
         numberTextView.setText(number);

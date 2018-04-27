@@ -21,7 +21,9 @@ public class ClassQuizzes extends Activity {
     ListView quizListView;
     String json;
     String jsonClass;
+    String jsonQuiz;
     User user;
+    Class userClass;
     String[] quizzes;
 
 
@@ -30,19 +32,21 @@ public class ClassQuizzes extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_quizzes);
 
+        quizListView = findViewById(R.id.quizNameListView);
+
         Gson gson = new Gson();
         json = getIntent().getStringExtra("com.example.potatoes.logIn");
         user = gson.fromJson(json , User.class);
+        jsonClass = getIntent().getStringExtra("com.example.potatoes.CLASS");
+        userClass = gson.fromJson(jsonClass, Class.class);
 
-        quizListView = findViewById(R.id.quizNameListView);
-        ArrayList<Class> classList = user.getClassesIn();
+        final ArrayList<Quiz> quizList = userClass.getQuizzes();
         int i = 0;
-        for (Class object: classList) {
-            for (Quiz quiz: object.getQuizzes(){
-                quizzes[i] = quiz.getQuizName();
-                i++;
-            }
+        for (Quiz object: quizList){
+            quizzes[i] = object.getQuizName();
+            i++;
         }
+
 
         AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
         quizListView.setAdapter(quizAdapter);
@@ -54,6 +58,10 @@ public class ClassQuizzes extends Activity {
                 Bundle extras = new Bundle();
                 extras.putInt("com.example.potatos.QUIZ_INDEX", position);
                 extras.putString("com.example.potatoes.logIn", json);
+                extras.putString("com.example.potatoes.CLASS", jsonClass);
+                Gson gson = new Gson();
+                jsonQuiz = gson.toJson(quizList.get(position));
+                extras.putString("com.exampe.potatoes.QUIZ", jsonQuiz);
                 showQuizQuestions.putExtras(extras);
                 startActivity(showQuizQuestions);
             }
@@ -63,7 +71,7 @@ public class ClassQuizzes extends Activity {
         createQuizBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(this, QuizInfo.class);
+                Intent i = new Intent(getApplicationContext(), QuizInfo.class);
                 startActivity(i);
             }
         });
@@ -72,7 +80,7 @@ public class ClassQuizzes extends Activity {
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(this, MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });

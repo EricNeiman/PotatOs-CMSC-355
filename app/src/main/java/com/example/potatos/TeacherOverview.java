@@ -36,7 +36,7 @@ public class TeacherOverview extends Activity {
         json = getIntent().getStringExtra("com.example.potatoes.logIn");
         user = gson.fromJson(json , User.class);
 
-        ArrayList<Class> classList = user.getClassesIn();
+        final ArrayList<Class> classList = user.getClassesIn();
         classes = new String[classList.size()];
         numOfQuizzes = new int[classList.size()];
         numOfOpenQuizzes = new int[classList.size()];
