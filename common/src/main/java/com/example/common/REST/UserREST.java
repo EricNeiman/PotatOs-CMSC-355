@@ -11,12 +11,12 @@ public class UserREST {
     //provided api functions
     public static final String CREATE_USER = "createUser";
     public static final String UPDATE_USER = "updateUser";
+    public static final String DELETE_USER = "deleteUser";
     public static final String GET_USER_BY_ID = "createUserById";
 
     //this one must have form data fields "email" and "passwordHash" set to the corresponding strings in the request
     public static final String GET_USER_BY_EMAIL_PASS = "getUserByEmailPass";
-    public static final String CREATE_QUIZ = "createQuiz";
-    public static final String GET_QUIZ_BY_ID = "getQuizById";
+
 
     public static User getByEmailPass(String email, String passwordHash) {
         Gson gson = new Gson();
@@ -30,12 +30,20 @@ public class UserREST {
     }
 
     //returns the copy of the user as interpreted by the server
-    //ID is ignored from the input
-    public static User createUser(User input) {
+    //Returns null if the user couldn't be created
+    //ID is ignored from the input, and the returned user will be assigned an ID by the server.
+    public static User createUser(User user) {
         Gson gson = new Gson();
-        String requestJson = gson.toJson(input);
-        String json = PotatOsApi.postJson(CREATE_USER, requestJson);
-        return gson.fromJson(json, User.class);
+        String requestJson = gson.toJson(user);
+        String resp = PotatOsApi.postJson(CREATE_USER, requestJson);
+
+        if (resp == null) {
+            int newID = Integer.getInteger(resp);
+            user.setId(newID);
+            return user;
+        } else {
+            return null;
+        }
     }
 
     public static User getById(int userID) {
@@ -45,8 +53,12 @@ public class UserREST {
     }
 
 
-    public boolean delete(User input) {
-        return false;
+    //deletes the user from the database
+    public boolean delete(User user) {
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(user.getId());
+        String resp = PotatOsApi.postJson(DELETE_USER, requestJson);
+        return true;
     }
 
 

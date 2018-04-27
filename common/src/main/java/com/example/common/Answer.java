@@ -8,13 +8,15 @@ public class Answer {
     private String feedback; // explanation for why the answer ir correct/incorrect
     private boolean correct; // true if answer was correct
     private boolean selected; // true if answer was selected
+    private int id; //database id
 
-    public Answer(String letter, String answerText, String feedback, boolean correct, boolean selected) {
+    public Answer(String letter, String answerText, String feedback, boolean correct, boolean selected, int id) {
         this.letter = letter;
         this.answerText = answerText;
         this.feedback = feedback;
         this.correct = correct;
         this.selected = selected;
+        this.id = id;
     } // basic constructor
 
     public Answer() {
@@ -23,6 +25,7 @@ public class Answer {
         this.feedback = "";
         this.correct = false;
         this.selected = false;
+        this.id = 0;
     } // default constructor
 
     // getters and setters for each variable
@@ -40,4 +43,7 @@ public class Answer {
 
     public boolean getSelected() {return selected;}
     public void setSelected(boolean selected) {this.selected = selected;}
+
+    public int getId() { return this.id; }
+    public void setId(int id) { this.id = id; }
 }

@@ -24,7 +24,7 @@ public class QuestionTable {
             COLUMN_CORRECT + " INTEGER, " +
             COLUMN_POINT_VALUE + " INTEGER);";
 
-    public void addQuestion(Question question) throws SQLException {
+    public static void createQuestion(Question question) throws SQLException {
         Connection db = PotatOsDatabase.getDbConnection();
 
         PreparedStatement query = db.prepareStatement(
@@ -33,7 +33,14 @@ public class QuestionTable {
                         COLUMN_IMAGE_ID + ", " +
                         COLUMN_CORRECT + ", " +
                         COLUMN_POINT_VALUE + ") VALUES (?,?,?,?);"
-
         );
+
+        query.setString(1, question.getPrompt());
+        query.setInt(2, question.getImage().getId());
+        query.setBoolean(3, question.getCorrect());
+        query.setInt(4, question.getPointValue());
+
+        //set the id to the created id
+        question.setId(query.getGeneratedKeys().getInt(1));
     }
 }

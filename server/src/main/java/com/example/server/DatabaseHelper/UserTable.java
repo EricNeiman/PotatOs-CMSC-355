@@ -116,4 +116,19 @@ public class UserTable {
         user.setId(query.getGeneratedKeys().getInt(1));
         System.out.println("User created ... " + user.getName());
     }
+
+    //deletes the requested user if it exists
+    public static void deleteUserById(int id) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
+
+        PreparedStatement query = db.prepareStatement(
+                "DELETE FROM " +
+                TABLE_NAME + " WHERE " +
+                UserTable.COLUMN_USER_ID + "=?;");
+
+        query.setInt(1, id);
+
+        query.execute();
+        System.out.println("User deleted from database...");
+    }
 }

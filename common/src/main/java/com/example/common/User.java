@@ -11,7 +11,7 @@ public class User {
     private String passwordHash; // user password
     private int id; // user id
 
-    public User(boolean isTeacher,ArrayList<Class> classesIn, ArrayList<Class> classesOwned, String name, String email, String passwordHash, int id){
+    public User(boolean isTeacher, ArrayList<Class> classesIn, ArrayList<Class> classesOwned, String name, String email, String passwordHash, int id){
         this.isTeacher = isTeacher;
         this.classesIn = classesIn;
         this.classesOwned = classesOwned;
