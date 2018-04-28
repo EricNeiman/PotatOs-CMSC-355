@@ -49,6 +49,7 @@ public class QuizResource {
     @Path(QuizREST.CREATE_QUIZ)
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    //this will create the quiz passed, creating all the contained answers and questions
     public Response createQuiz(String message) {
         System.out.println("Creating a quiz..." + message);
         Gson gson = new Gson();

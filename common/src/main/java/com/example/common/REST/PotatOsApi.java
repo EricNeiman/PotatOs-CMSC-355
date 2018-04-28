@@ -3,6 +3,7 @@ package com.example.common.REST;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.ws.rs.ServerErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -48,6 +49,15 @@ public class PotatOsApi {
         } else {
             System.out.println("Response was not ok from the server on REST call to " + subPath);
             return null;
+        }
+    }
+
+    public static boolean isServerUp() {
+        String message = postJson(HEARTBEAT);
+        if (message != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -62,4 +62,15 @@ public class UserREST {
     }
 
 
+    public static boolean updateUser(User user) {
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(new SmallUser(user));
+        String resp = PotatOsApi.postJson(UPDATE_USER, requestJson);
+
+        if (resp != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

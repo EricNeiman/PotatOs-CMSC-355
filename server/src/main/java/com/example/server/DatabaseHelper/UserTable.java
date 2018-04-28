@@ -1,5 +1,6 @@
 package com.example.server.DatabaseHelper;
 
+import com.example.common.REST.SmallUser;
 import com.example.common.User;
 
 import java.sql.Connection;
@@ -77,10 +78,16 @@ public class UserTable {
         }
     }
 
-    public static boolean updateUser(User newUserInfo) throws SQLException {
-        Connection db = PotatOsDatabase.getDbConnection();
+    public static boolean updateUser(User user) throws SQLException {
+        return updateUser(user.getPasswordHash(), user.getEmail(), user.getName(), user.getId());
+    }
 
-        User user = new User();
+    public static boolean updateUser(SmallUser user) throws SQLException {
+        return updateUser(user.getPasswordHash(), user.getEmail(), user.getName(), user.getId());
+    }
+
+    public static boolean updateUser(String passwordHash, String email, String name, int id) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
 
         PreparedStatement query = db.prepareStatement("UPDATE " + TABLE_NAME + " SET " +
                 COLUMN_PASSWORD_HASH + "=?, " +
@@ -89,10 +96,10 @@ public class UserTable {
                 " WHERE " + COLUMN_USER_ID + "=?;"
         );
 
-        query.setString(1, user.getPasswordHash());
-        query.setString(2, user.getEmail());
-        query.setString(3, user.getName());
-        query.setInt(4, user.getId());
+        query.setString(1, passwordHash);
+        query.setString(2, email);
+        query.setString(3, name);
+        query.setInt(4, id);
 
         query.execute();
         return true;

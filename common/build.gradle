@@ -1,11 +1,62 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext.junit4Version        = '4.12'
+ext.junitVintageVersion  = '5.1.0'
+ext.junitPlatformVersion = '1.1.0'
+ext.junitJupiterVersion  = '5.1.0'
+ext.log4jVersion         = '2.9.0'
+
 apply plugin: 'java-library'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'java-library-distribution'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.code.gson:gson:2.8.2'
     implementation 'javax.ws.rs:javax.ws.rs-api:2.0.1'
     testImplementation 'junit:junit:4.12'
+
+    // JUnit Jupiter API and TestEngine implementation
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+
+    // If you also want to support JUnit 3 and JUnit 4 tests
+    testCompile("junit:junit:${junit4Version}")
+    testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
+
+    // To use Log4J's LogManager
+    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
+    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
+
+    // Only needed to run tests in an (IntelliJ) IDE(A) that bundles an older version
+    testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
 }
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
+junitPlatform {
+    filters {
+        engines {
+        }
+        tags {
+            // include 'fast'
+            exclude 'slow'
+        }
+    }
+    logManager 'org.apache.logging.log4j.jul.LogManager'
+}
