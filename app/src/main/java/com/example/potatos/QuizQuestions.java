@@ -69,7 +69,7 @@ public class QuizQuestions extends Activity {
         questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showQuestions = new Intent(getApplicationContext(), Question.class);
+                Intent showQuestions = new Intent(getApplicationContext(), com.example.potatos.Question.class);
                 Bundle extras = new Bundle();
                 extras.putInt("com.example.potatos.QUESTION_INDEX", position);
                 extras.putString("com.example.potatoes.logIn", json);

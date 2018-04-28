@@ -61,7 +61,7 @@ public class ClassQuizzes extends Activity {
                 extras.putString("com.example.potatoes.CLASS", jsonClass);
                 Gson gson = new Gson();
                 jsonQuiz = gson.toJson(quizList.get(position));
-                extras.putString("com.exampe.potatoes.QUIZ", jsonQuiz);
+                extras.putString("com.example.potatoes.QUIZ", jsonQuiz);
                 showQuizQuestions.putExtras(extras);
                 startActivity(showQuizQuestions);
             }
