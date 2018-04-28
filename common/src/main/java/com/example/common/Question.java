@@ -47,6 +47,15 @@ public class Question {
         return false;
     }
 
+    public boolean isAnswered() {
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i].getSelected()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Answer[] getAnswers() {
         return answers;
     }
