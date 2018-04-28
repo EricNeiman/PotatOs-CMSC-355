@@ -14,7 +14,7 @@ public class View_grades extends Activity {
 
     public void onGotoQuizClick(View v) {
         if(v.getId() == R.id.bGotoQuiz) {
-            Intent i = new Intent(this, ClassQuizzes.class);
+            Intent i = new Intent(this, QuizView.class);
             startActivity(i);
         }
     }

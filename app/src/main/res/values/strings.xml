@@ -16,6 +16,7 @@
     <string name="className">ClassName</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="enterUsername">Enter Username</string>
+    <string name="enterEmail">Enter email address</string>
     <string name="numQuiz">#Quizzes</string>
     <string name="numOpenQuiz">#OpenQuizzes</string>
     <string name="numStudent">#Students</string>

@@ -17,13 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".TeacherOverview" />
-        <activity android:name=".CreateQuiz" />
         <activity android:name=".CreateAccount" />
-        <activity android:name=".QuizInfo" />
-        <activity android:name=".AddText" />
-        <activity android:name=".View_grades" />
-        <activity android:name=".TypeofQuestion" />
+        <activity android:name=".ClassQuizzes" />
+        <activity android:name=".CreateQuiz" />
         <activity android:name=".AddAnswer" />
-        <activity android:name=".ClassQuizzes"></activity>
+        <activity android:name=".TypeofQuestion" />
+        <activity android:name=".QuizInfo" />
+        <activity android:name=".QuizView" />
+        <activity android:name=".View_grades" />
+        <activity android:name=".AddText"></activity>
     </application>
 </manifest>
