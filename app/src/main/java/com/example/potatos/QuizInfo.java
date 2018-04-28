@@ -20,7 +20,7 @@ public class QuizInfo extends Activity {
 
             EditText a = (EditText)findViewById(R.id.TFquizname);
             String str = a.getText().toString();
-            Intent i = new Intent(QuizInfo.this, ClassQuizzes.class);
+            Intent i = new Intent(QuizInfo.this, QuizView.class);
             i.putExtra("Quizname", str);
             startActivity(i);
         }

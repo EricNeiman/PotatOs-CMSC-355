@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
 public class ClassQuizzes extends Activity {
@@ -37,9 +36,6 @@ public class ClassQuizzes extends Activity {
             }
         });*/
 
-        String quizname = getIntent().getStringExtra("Quizname");
-        TextView tv = (TextView)findViewById(R.id.TVquizname);
-        tv.setText(quizname);
 
     }
 
@@ -53,12 +49,6 @@ public class ClassQuizzes extends Activity {
 
     }
 
-    public void onGotoQuizClick(View v)  {
-        if(v.getId() == R.id.bGotoQuiz) {
-            Intent i = new Intent(this, CreateQuiz.class);
-            startActivity(i);
-        }
-    }
 
     public void onLogOutClick(View v ) {
         if(v.getId() == R.id.BLogOut)  {
@@ -68,13 +58,15 @@ public class ClassQuizzes extends Activity {
         }
     }
 
-    public void onSeeGradesClick (View v) {
-        if(v.getId() == R.id.bGrades)  {
-            Intent i = new Intent(this, View_grades.class);
+    public void onViewQuizesClick(View v) {
+        if(v.getId() == R.id.bViewQuizes)  {
+            Intent i = new Intent(this, QuizView.class);
             startActivity(i);
 
         }
+
     }
+
 
 
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/TVquizname"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/emptyString" />
+
+        <Button
+            android:id="@+id/bGrades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onSeeGradesClick"
+            android:text="See Grades" />
+
+        <Button
+            android:id="@+id/bGotoQuiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onGotoQuizClick"
+            android:text="go to quiz" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bGotoMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onGotoMainClick"
+        android:text="go to main" />
+</LinearLayout>
