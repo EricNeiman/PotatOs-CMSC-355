@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.example.common.Class;
+import com.example.common.REST.SmallClass;
 import com.example.common.User;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 
@@ -49,7 +50,26 @@ public class ClassTable {
         cls.setClassID(newId);
     }
 
-    public static Class getClassById(int id) throws SQLException {
+    public static void createClass(SmallClass cls) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
+
+        PreparedStatement query = db.prepareStatement("INSERT INTO " + TABLE_NAME + " (" +
+                COLUMN_CLASS_CODE + ", " +
+                COLUMN_CLASS_NAME + ", " +
+                COLUMN_OWNER_ID + ")" +
+                " VALUES (?,?,?);"
+        );
+
+        query.setString(1, cls.getClassCode());
+        query.setString(2, cls.getClassName());
+        query.setInt(3, cls.getOwnerId());
+        query.execute();
+
+        int newId = query.getGeneratedKeys().getInt(1);
+        cls.setClassID(newId);
+    }
+
+    public static SmallClass getClassById(int id) throws SQLException {
         Connection db = PotatOsDatabase.getDbConnection();
         PreparedStatement query = db.prepareStatement("SELECT " +
                 COLUMN_CLASS_CODE + ", " +
@@ -63,7 +83,7 @@ public class ClassTable {
 
         ResultSet rs = query.executeQuery();
         if (!rs.isAfterLast()) {
-            Class cls = new Class();
+            SmallClass cls = new SmallClass();
             cls.setClassCode(rs.getString(1));
             cls.setClassName(rs.getString(2));
             cls.setOwnerId(rs.getInt(3));
@@ -111,17 +131,5 @@ public class ClassTable {
         }
     }
 
-    public static void enrollUserInClass(User user, Class cls) throws SQLException {
-        Connection db = PotatOsDatabase.getDbConnection();
-        PreparedStatement query = db.prepareStatement(
-                "INSERT INTO " + EnrollmentsTable.TABLE_NAME + " (" +
-                        EnrollmentsTable.COLUMN_USER_ID + ", " +
-                        EnrollmentsTable.COLUMN_CLASS_ID + ") " +
-                        " VALUES (?, ?);"
-        );
 
-        query.setInt(1, user.getId());
-        query.setInt(2, cls.getClassID());
-        query.execute();
-    }
 }

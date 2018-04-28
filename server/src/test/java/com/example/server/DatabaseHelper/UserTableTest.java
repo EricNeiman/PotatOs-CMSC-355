@@ -1,6 +1,8 @@
 package com.example.server.DatabaseHelper;
 
 import com.example.common.Class;
+import com.example.common.REST.SmallClass;
+import com.example.common.REST.SmallUser;
 import com.example.common.User;
 
 import org.junit.Assert;
@@ -19,7 +21,7 @@ class UserTableTest {
 
     @AfterEach
     void tearDown() {
-//        PotatOsDatabase.deleteTables();  //don't delete so you can inspect the database
+        PotatOsDatabase.deleteTables();  //don't delete so you can inspect the database
     }
 
     @Test
@@ -41,7 +43,7 @@ class UserTableTest {
 
         ClassTable.createClass(cls);
 
-        ClassTable.enrollUserInClass(user, cls);
+        EnrollmentsTable.enrollUserInClass(user, cls);
 
         Assert.assertEquals("Science Class", cls.getClassName());
 
@@ -49,7 +51,7 @@ class UserTableTest {
         Assert.assertEquals(1, cls.getClassID());
         Assert.assertEquals(1, user.getId());
 
-        Class dbCls = ClassTable.getClassById(cls.getClassID());
+        SmallClass dbCls = ClassTable.getClassById(cls.getClassID());
         Assert.assertNotEquals(null, dbCls);
         Assert.assertEquals(cls.getClassID(), dbCls.getClassID());
         Assert.assertEquals(cls.getClassName(), dbCls.getClassName());

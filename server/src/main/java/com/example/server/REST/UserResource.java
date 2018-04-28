@@ -1,8 +1,11 @@
 package com.example.server.REST;
 
 import com.example.common.REST.ClassUserPassRequest;
+import com.example.common.REST.SmallClass;
+import com.example.common.REST.SmallUser;
 import com.example.common.REST.UserREST;
 import com.example.common.User;
+import com.example.server.DatabaseHelper.EnrollmentsTable;
 import com.example.server.DatabaseHelper.UserTable;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.google.gson.Gson;
@@ -78,10 +81,16 @@ public class UserResource {
     @POST
     @Path(UserREST.UPDATE_USER)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(@PathParam("id") int id, String message) {
+    public Response updateUser(String message) {
         Gson gson = new Gson();
         try {
-            UserTable.updateUser(gson.fromJson(message, User.class));
+            SmallUser user = gson.fromJson(message, SmallUser.class);
+            UserTable.updateUser(user);
+
+            for (int i: user.getClassesIn()) {
+                EnrollmentsTable.enrollUserInClass(user, i);
+            }
+
             return Response.status(Response.Status.OK).build();
         } catch (SQLException ex) {
             return Response.status(Response.Status.BAD_REQUEST).build();
