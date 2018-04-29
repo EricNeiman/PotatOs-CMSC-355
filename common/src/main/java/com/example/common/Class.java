@@ -1,5 +1,7 @@
 package com.example.common;
 
+import com.example.common.REST.QuizREST;
+import com.example.common.REST.SmallClass;
 import com.example.common.REST.UserREST;
 
 import java.util.ArrayList;
@@ -18,14 +20,42 @@ public class Class {
         this.classCode = classCode;
         this.quizzes = quizzes;
         this.users = users;
+
+        this.checkCollections();
+
     } // basic constructor
+
+    private void checkCollections() {
+        if (quizzes == null) {
+            this.quizzes = new ArrayList<>();
+        }
+        if (users == null) {
+            this.users = new ArrayList<>();
+        }
+    }
+
+
+    public Class(SmallClass cls) {
+        this.ownerId = cls.getOwnerId();
+        this.className = cls.getClassName();
+        this.classCode = cls.getClassCode();
+
+        this.checkCollections();
+        for (int i: cls.getQuizzes()) {
+            this.quizzes.add(QuizREST.getQuizById(i));
+        }
+
+
+        for (int i: cls.getEnrolledUsers()) {
+            this.users.add(UserREST.getById(i));
+        }
+    }
 
     public Class() {
         this.ownerId = 0;
         this.className = "";
         this.classCode = "";
-        this.quizzes = null;
-        this.users = null;
+        this.checkCollections();
         this.classID = 0;
     } // default constructor
 

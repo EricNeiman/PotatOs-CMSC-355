@@ -1,13 +1,13 @@
 package com.example.common.REST;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
+
 import javax.ws.rs.core.Response;
 
 public class PotatOsApi {
@@ -23,8 +23,8 @@ public class PotatOsApi {
 
     //posts to the url subPath (what appears after "api/" with parameterJson in the body, and
     //returns the body of what the server returns
-    public static String postJson(String subPath, String parameterJson) {
-        Client client = ClientBuilder.newClient();
+    public static String postJson(String subPath, String parameterJson, boolean post) {
+        Client client = Client.create();
 
         URI url = null;
         try {
@@ -34,24 +34,37 @@ public class PotatOsApi {
             return null;
         }
 
-        WebTarget target = client.target(url);
+        WebResource target = client.resource(url);
+        ClientResponse rs = null;
+        if (post) {
+            rs = target
+                    .type("application/json")
+                    .post(ClientResponse.class, parameterJson);
+        } else {
+            rs = target
+                    .type("application/json")
+                    .get(ClientResponse.class);
+        }
 
-        Response rs = target.request(MediaType.APPLICATION_JSON_TYPE).post(
-                Entity.entity(
-                        parameterJson,
-                        MediaType.APPLICATION_JSON
-                )
-        );
-
+        System.out.println("Made a request to the server: " + url + " response: " + rs.getStatus());
         if (rs.getStatus() == Response.Status.OK.getStatusCode()) {
-            return rs.readEntity(String.class);
+            return rs.getEntity(String.class);
         } else {
             System.out.println("Response was not ok from the server on REST call to " + subPath);
             return null;
         }
     }
 
-    public static String postJson(String subPath) {
-        return postJson(subPath, "");
+    public static boolean isServerUp() {
+        String message = postJson(HEARTBEAT, false);
+        if (message != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String postJson(String subPath, boolean post) {
+        return postJson(subPath, "", post);
     }
 }

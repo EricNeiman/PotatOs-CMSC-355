@@ -13,7 +13,8 @@ public class Quiz {
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
     private Boolean submitted; // true if quiz was submitted on time
-    private int quizId; //database id
+    private int id; //database id
+    private int classId;
 
     public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
         this.quizName = quizName;
@@ -122,10 +123,10 @@ public class Quiz {
         this.submitted = submitted;
     }
 
-    public int getQuizId() {
-        return quizId;
+    public int getId() {
+        return id;
     }
-    public void setQuizId(int quizId) {
-        this.quizId = quizId;
+    public void setId(int id) {
+        this.id = id;
     }
 }

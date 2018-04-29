@@ -3,6 +3,7 @@ package com.example.server.REST;
 import com.example.common.Answer;
 import com.example.common.Question;
 import com.example.common.Quiz;
+import com.example.common.REST.PotatOsApi;
 import com.example.common.REST.QuizREST;
 import com.example.common.REST.UserREST;
 import com.example.common.User;
@@ -21,11 +22,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+@Path(PotatOsApi.API_DIR)
 public class QuizResource {
     @POST
     @Path(QuizREST.GET_QUIZ_BY_ID)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getQuizById(int id) {
         Gson gson = new Gson();
         Response rs;
@@ -47,8 +47,7 @@ public class QuizResource {
 
     @POST
     @Path(QuizREST.CREATE_QUIZ)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    //this will create the quiz passed, creating all the contained answers and questions
     public Response createQuiz(String message) {
         System.out.println("Creating a quiz..." + message);
         Gson gson = new Gson();

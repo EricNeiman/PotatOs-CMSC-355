@@ -2,6 +2,7 @@ package com.example.server;
 
 import com.example.common.REST.PotatOsApi;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -13,7 +14,6 @@ public class RESTApi {
     //just a function for testing that the server is up.  Url to test will be printed on startup.
     @GET
     @Path(PotatOsApi.HEARTBEAT)
-    @Produces(MediaType.TEXT_PLAIN)
     public Response heartbeat() {
         System.out.println("Heartbeat requested, sending ok.");
         return Response.status(Response.Status.OK)
