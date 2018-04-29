@@ -26,6 +26,7 @@
     <string name="emptyString3" />
     <string name="emptyString4" />
     <string name="emptyString5" />
+    <string name="emptyString6" />
 
     <string-array name="classnames">
         <item>First Class</item>

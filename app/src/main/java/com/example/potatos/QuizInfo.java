@@ -19,9 +19,12 @@ public class QuizInfo extends Activity {
         if(v.getId() == R.id.Bnewquiz) {
 
             EditText a = (EditText)findViewById(R.id.TFquizname);
+            EditText b = (EditText)findViewById(R.id.TFpassword);
             String str = a.getText().toString();
+            String str1 = b.getText().toString();
             Intent i = new Intent(QuizInfo.this, QuizView.class);
             i.putExtra("Quizname", str);
+            i.putExtra("Quizpassword", str1);
             startActivity(i);
         }
 
