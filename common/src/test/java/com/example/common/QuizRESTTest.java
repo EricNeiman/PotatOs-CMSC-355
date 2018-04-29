@@ -17,10 +17,12 @@ import java.util.Date;
 class QuizRESTTest {
     @BeforeEach
     void setUp()  {
+        PotatOsApi.resetDatabase();  //calls to the server to reset the database
     }
 
     @AfterEach
     void tearDown() {
+        PotatOsApi.resetDatabase(); //calls to the server to reset the database
     }
 
     @Test
@@ -78,7 +80,11 @@ class QuizRESTTest {
 
         User dbUsr = UserREST.getByEmailPass(user.getEmail(), user.getPasswordHash());
         Assert.assertNotEquals(null, dbUsr.getClassesIn());
-
+        Assert.assertEquals(user.getId(), dbUsr.getId());
+        Assert.assertEquals(user.getEmail(), dbUsr.getEmail());
+        Assert.assertEquals(user.getPasswordHash(), dbUsr.getPasswordHash());
+        Assert.assertEquals(user.getIsTeacher(), dbUsr.getIsTeacher());
+        Assert.assertEquals(user.getName(), dbUsr.getName());
 
 
         Answer an1 = new Answer("A", "Answer 1", "", false, false, 0);

@@ -39,7 +39,7 @@ public class Class {
         this.ownerId = cls.getOwnerId();
         this.className = cls.getClassName();
         this.classCode = cls.getClassCode();
-
+        this.classID = cls.getClassID();
         this.checkCollections();
         for (int i: cls.getQuizzes()) {
             this.quizzes.add(QuizREST.getQuizById(i));
