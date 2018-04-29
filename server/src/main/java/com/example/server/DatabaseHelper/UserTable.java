@@ -92,7 +92,7 @@ public class UserTable {
         PreparedStatement query = db.prepareStatement("UPDATE " + TABLE_NAME + " SET " +
                 COLUMN_PASSWORD_HASH + "=?, " +
                 COLUMN_EMAIL + "=?, " +
-                COLUMN_NAME + "=?, " +
+                COLUMN_NAME + "=? " +
                 " WHERE " + COLUMN_USER_ID + "=?;"
         );
 

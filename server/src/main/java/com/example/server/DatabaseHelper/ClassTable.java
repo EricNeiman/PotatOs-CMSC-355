@@ -88,7 +88,6 @@ public class ClassTable {
             cls.setClassName(rs.getString(2));
             cls.setOwnerId(rs.getInt(3));
             cls.setClassID(id);
-
             return cls;
         } else {
             return null;

@@ -1,5 +1,8 @@
 package com.example.common;
 
+import com.example.common.REST.ClassREST;
+import com.example.common.REST.SmallUser;
+
 import java.util.ArrayList;
 
 public class User {
@@ -30,6 +33,27 @@ public class User {
         this.id = 0;
         this.checkCollections();
     } // default constructor
+
+    public User(SmallUser usr) {
+        this.isTeacher = usr.isTeacher();
+        this.email = usr.getEmail();
+        this.id = usr.getId();
+        this.name = usr.getName();
+        this.passwordHash = usr.getPasswordHash();
+
+        //private ArrayList<Class> classesIn; // class user is in storage
+        //private ArrayList<Class> classesOwned; // owned class storage for user
+        this.classesIn = new ArrayList<>();
+        this.classesOwned = new ArrayList<>();
+
+        for (int i: usr.getClassesIn()) {
+            classesIn.add(ClassREST.getClassById(i));
+        }
+
+        for (int i: usr.getClassesOwned()) {
+            classesOwned.add(ClassREST.getClassById(i));
+        }
+    }
 
     private void checkCollections() {
         if (this.classesIn == null) {

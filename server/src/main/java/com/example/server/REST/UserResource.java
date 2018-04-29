@@ -44,9 +44,9 @@ public class UserResource {
     @POST
     @Path(UserREST.GET_USER_BY_EMAIL_PASS)
     public Response getUserByEmailPass(String message) {
+        System.out.println("Got a login request: " + message);
         Gson gson = new Gson();
         ClassUserPassRequest form = gson.fromJson(message, ClassUserPassRequest.class);
-
         try {
             User user = UserTable.getUserByEmailPass(form.email, form.passwordHash);
             return Response.status(Response.Status.OK)
@@ -59,16 +59,18 @@ public class UserResource {
     }
 
     @POST
-    @Path(UserREST.GET_USER_BY_ID + "/{id}")
-    public static Response getById(@PathParam("id") int userID) {
+    @Path(UserREST.GET_USER_BY_ID)
+    public static Response getById(String message) {
         try {
             Gson gson = new Gson();
-            User user = UserTable.getUserById(userID);
+            int id = gson.fromJson(message, int.class);
+            User user = UserTable.getUserById(id);
             return Response.status(Response.Status.OK)
                     .entity(
                             gson.toJson(user)
                     ).build();
         } catch (SQLException ex){
+            ex.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -87,6 +89,7 @@ public class UserResource {
 
             return Response.status(Response.Status.OK).build();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -101,6 +104,7 @@ public class UserResource {
             UserTable.deleteUserById(id);
             return Response.status(Response.Status.OK).build();
         } catch (SQLException e) {
+            e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
