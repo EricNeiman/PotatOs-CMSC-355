@@ -25,6 +25,8 @@
         <activity android:name=".QuizInfo" />
         <activity android:name=".QuizView" />
         <activity android:name=".View_grades" />
-        <activity android:name=".AddText"></activity>
+        <activity android:name=".AddText" />
+        <activity android:name=".Question_Teacher"></activity>
     </application>
+
 </manifest>

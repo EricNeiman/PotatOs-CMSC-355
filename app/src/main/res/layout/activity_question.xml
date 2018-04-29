@@ -8,70 +8,68 @@
 
     <TextView
         android:id="@+id/questionTextView"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/answerATextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
         tools:text="Question goes here" />
 
     <TextView
-        android:id="@+id/answerATextView"
-        android:layout_width="217dp"
+        android:id="@+id/answerTextViewA"
+        android:layout_width="0dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/answerBTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/radio_group_selection" />
-
-    <TextView
-        android:id="@+id/answerBTextView"
-        android:layout_width="217dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/answerCTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/radio_group_selection" />
-
-    <TextView
-        android:id="@+id/answerCTextView"
-        android:layout_width="217dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/answerDTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/radio_group_selection" />
-
-    <TextView
-        android:id="@+id/answerDTextView"
-        android:layout_width="217dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/radio_group_selection"
-        tools:layout_editor_absoluteY="312dp" />
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        tools:text="Answer A" />
+
+    <TextView
+        android:id="@+id/answerTextViewB"
+        android:layout_width="0dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/radio_group_selection"
+        app:layout_constraintTop_toBottomOf="@+id/answerTextViewA"
+        tools:text="Answer B" />
+
+    <TextView
+        android:id="@+id/answerTextViewC"
+        android:layout_width="0dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/radio_group_selection"
+        app:layout_constraintTop_toBottomOf="@+id/answerTextViewB"
+        tools:text="Answer C" />
+
+    <TextView
+        android:id="@+id/answerTextViewD"
+        android:layout_width="0dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/radio_group_selection"
+        app:layout_constraintTop_toBottomOf="@+id/answerTextViewC"
+        tools:text="Answer D" />
 
     <RadioGroup
         android:id="@+id/radio_group_selection"

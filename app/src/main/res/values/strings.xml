@@ -26,4 +26,5 @@
     <string name="emptyString3" />
     <string name="emptyString4" />
     <string name="emptyString5" />
+    <string name="returnQuiz">Return to Quiz</string>
 </resources>
