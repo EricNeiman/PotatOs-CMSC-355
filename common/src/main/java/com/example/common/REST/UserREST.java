@@ -25,7 +25,7 @@ public class UserREST {
         form.passwordHash = passwordHash;
 
         String requestJson = gson.toJson(form);
-        String json = PotatOsApi.postJson(GET_USER_BY_EMAIL_PASS, requestJson);
+        String json = PotatOsApi.postJson(GET_USER_BY_EMAIL_PASS, requestJson, true);
         return gson.fromJson(json, User.class);
     }
 
@@ -35,10 +35,10 @@ public class UserREST {
     public static User createUser(User user) {
         Gson gson = new Gson();
         String requestJson = gson.toJson(user);
-        String resp = PotatOsApi.postJson(CREATE_USER, requestJson);
+        String resp = PotatOsApi.postJson(CREATE_USER, requestJson, true);
 
-        if (resp == null) {
-            int newID = Integer.getInteger(resp);
+        if (resp != null) {
+            int newID = Integer.parseInt(resp);
             user.setId(newID);
             return user;
         } else {
@@ -48,7 +48,7 @@ public class UserREST {
 
     public static User getById(int userID) {
         Gson gson = new Gson();
-        String json = PotatOsApi.postJson(GET_USER_BY_ID + "/" + userID);
+        String json = PotatOsApi.postJson(GET_USER_BY_ID + "/" + userID, true);
         return gson.fromJson(json, User.class);
     }
 
@@ -57,7 +57,7 @@ public class UserREST {
     public boolean delete(User user) {
         Gson gson = new Gson();
         String requestJson = gson.toJson(user.getId());
-        String resp = PotatOsApi.postJson(DELETE_USER, requestJson);
+        String resp = PotatOsApi.postJson(DELETE_USER, requestJson, true);
         return true;
     }
 
@@ -65,7 +65,7 @@ public class UserREST {
     public static boolean updateUser(User user) {
         Gson gson = new Gson();
         String requestJson = gson.toJson(new SmallUser(user));
-        String resp = PotatOsApi.postJson(UPDATE_USER, requestJson);
+        String resp = PotatOsApi.postJson(UPDATE_USER, requestJson, true);
 
         if (resp != null) {
             return true;

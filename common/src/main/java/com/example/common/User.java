@@ -19,17 +19,27 @@ public class User {
         this.email = email;
         this.passwordHash = passwordHash;
         this.id = id;
+        this.checkCollections();
     } // basic constructor
 
     public User(){
         this.isTeacher = false;
-        this.classesIn = null;
-        this.classesOwned = null;
         this.name = "";
         this.email = "";
         this.passwordHash = "";
         this.id = 0;
+        this.checkCollections();
     } // default constructor
+
+    private void checkCollections() {
+        if (this.classesIn == null) {
+            this.classesIn = new ArrayList<>();
+        }
+
+        if (this.classesOwned == null) {
+            this.classesOwned = new ArrayList<>();
+        }
+    }
 
     // getters and setters for each variable
     public boolean getIsTeacher() {

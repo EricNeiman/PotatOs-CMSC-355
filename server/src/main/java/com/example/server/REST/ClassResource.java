@@ -1,6 +1,7 @@
 package com.example.server.REST;
 
 import com.example.common.REST.ClassREST;
+import com.example.common.REST.PotatOsApi;
 import com.example.common.REST.SmallClass;
 import com.example.server.DatabaseHelper.ClassTable;
 import com.example.server.DatabaseHelper.EnrollmentsTable;
@@ -17,11 +18,9 @@ import javax.ws.rs.core.Response;
 
 import java.sql.SQLException;
 
-
+@Path(PotatOsApi.API_DIR)
 public class ClassResource {
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     @Path(ClassREST.CREATE_CLASS)
     public Response createClass(String message) {
         Response rs;
@@ -30,7 +29,7 @@ public class ClassResource {
             SmallClass cls = gson.fromJson(message, SmallClass.class);
 
             ClassTable.createClass(cls);
-
+            System.out.println("Created a class, id: " + cls.getClassID() + ", name: " + cls.getClassName());
             rs = Response.status(Response.Status.OK)
                     .entity(
                             gson.toJson(cls)
@@ -42,9 +41,7 @@ public class ClassResource {
         return rs;
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
     @Path(ClassREST.GET_CLASSES_FOR_USER_ID)
     public Response getClassesForUserId(String message) {
         Gson gson = new Gson();
@@ -63,9 +60,7 @@ public class ClassResource {
     }
 
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
     @Path(ClassREST.GET_CLASS_BY_ID)
     public Response getClassById(String message) {
         Gson gson = new Gson();

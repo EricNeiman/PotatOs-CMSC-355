@@ -16,13 +16,13 @@ public class ClassREST {
 
     public static Class createClass(Class input) {
         Gson gson = new Gson();
-        String json = PotatOsApi.postJson(CREATE_CLASS, gson.toJson(new SmallClass(input)));
+        String json = PotatOsApi.postJson(CREATE_CLASS, gson.toJson(new SmallClass(input)), true);
         return new Class(gson.fromJson(json, SmallClass.class));
     }
 
     public static Class getClassById(int id) {
         Gson gson = new Gson();
-        String json = PotatOsApi.postJson(GET_CLASS_BY_ID, gson.toJson(id));
+        String json = PotatOsApi.postJson(GET_CLASS_BY_ID, gson.toJson(id), true);
 
         return new Class(gson.fromJson(json, SmallClass.class));
     }

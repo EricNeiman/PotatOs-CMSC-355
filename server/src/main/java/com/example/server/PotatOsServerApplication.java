@@ -18,7 +18,7 @@ public class PotatOsServerApplication extends Application {
         c.add(RESTApi.class);   //You can register more classes here that handle paths
 
         c.add(ClassResource.class);
-        c.add(QuestionResource.class);
+//        c.add(QuestionResource.class);
         c.add(QuizResource.class);
         c.add(UserResource.class);
 

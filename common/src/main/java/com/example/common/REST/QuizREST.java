@@ -15,7 +15,7 @@ public class QuizREST {
     public static Quiz createQuiz(Quiz quiz) {
         Gson gson = new Gson();
         String requestJson = gson.toJson(quiz);
-        String resp = PotatOsApi.postJson(CREATE_QUIZ, requestJson);
+        String resp = PotatOsApi.postJson(CREATE_QUIZ, requestJson, true);
 
         if (resp == null) {
             int newID = Integer.getInteger(resp);
@@ -29,7 +29,7 @@ public class QuizREST {
     public static Quiz getQuizById(int quizID) {
         Gson gson = new Gson();
         String requestJson = gson.toJson(quizID);
-        String resp = PotatOsApi.postJson(GET_QUIZ_BY_ID, requestJson);
+        String resp = PotatOsApi.postJson(GET_QUIZ_BY_ID, requestJson, true);
 
         if (resp == null) {
             return gson.fromJson(resp, Quiz.class);
