@@ -36,7 +36,12 @@ public class QuestionTable {
         );
 
         query.setString(1, question.getPrompt());
-        query.setInt(2, question.getImage().getId());
+
+        if (question.getImage() != null) {
+            query.setInt(2, question.getImage().getId());
+        } else {
+            query.setInt(2, 0);
+        }
         query.setBoolean(3, question.getCorrect());
         query.setInt(4, question.getPointValue());
 

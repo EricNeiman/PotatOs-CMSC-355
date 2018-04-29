@@ -9,6 +9,7 @@ public class Answer {
     private boolean correct; // true if answer was correct
     private boolean selected; // true if answer was selected
     private int id; //database id
+    private int questionId;
 
     public Answer(String letter, String answerText, String feedback, boolean correct, boolean selected, int id) {
         this.letter = letter;
@@ -46,4 +47,12 @@ public class Answer {
 
     public int getId() { return this.id; }
     public void setId(int id) { this.id = id; }
+
+    public int getQuestionId() {
+        return this.questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId=questionId;
+    }
 }

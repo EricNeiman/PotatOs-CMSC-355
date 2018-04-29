@@ -6,6 +6,7 @@ public class Question {
     private Answer[] answers; // 4 answer objects attached
     private int pointValue; // points possible for question
     private int id; //database id
+    private Quiz quiz;
 
     public Question(String prompt, QuestionImage image, Boolean correct, Answer[] answers, int pointValue, int id) {
         this.prompt = prompt;
@@ -72,4 +73,12 @@ public class Question {
 
     public void setId(int id) { this.id = id; }
     public int getId() { return id; }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
 }

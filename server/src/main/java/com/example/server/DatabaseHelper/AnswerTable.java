@@ -13,7 +13,7 @@ public class AnswerTable {
     public static final String COLUMN_FEEDBACK = "feedback";
     public static final String COLUMN_CORRECT = "correct";
     public static final String COLUMN_SELECTED = "selected";
-
+    public static final String COLUMN_QUESTION_ID = "questionId";
     public static final String TABLE_NAME = "Answers";
 
     public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME + " (" +
@@ -22,7 +22,8 @@ public class AnswerTable {
             COLUMN_ANSWER_TEXT + " TEXT, " +
             COLUMN_FEEDBACK + " TEXT, " +
             COLUMN_CORRECT + " INTEGER, " +
-            COLUMN_SELECTED + " INTEGER );";
+            COLUMN_SELECTED + " INTEGER, " +
+            COLUMN_QUESTION_ID + " INTEGER);";
 
     public static void createAnswer(Answer answer) throws SQLException {
         Connection db = PotatOsDatabase.getDbConnection();
@@ -33,7 +34,9 @@ public class AnswerTable {
                         COLUMN_ANSWER_TEXT + ", " +
                         COLUMN_FEEDBACK + ", " +
                         COLUMN_CORRECT + ", " +
-                        COLUMN_SELECTED + ") VALUES (?,?,?,?,?);"
+                        COLUMN_SELECTED + ", " +
+                        COLUMN_QUESTION_ID +
+                        ") VALUES (?,?,?,?,?,?);"
         );
 
         query.setString(1, answer.getLetter());
@@ -41,6 +44,7 @@ public class AnswerTable {
         query.setString(3, answer.getFeedback());
         query.setBoolean(4, answer.getCorrect());
         query.setBoolean(5, answer.getSelected());
+        query.setInt(6, answer.getQuestionId());
         query.execute();
 
         answer.setId(query.getGeneratedKeys().getInt(1));
