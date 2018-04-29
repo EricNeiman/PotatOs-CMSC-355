@@ -69,6 +69,7 @@ public class SmallUser {
         this.passwordHash = user.getPasswordHash();
         this.id = user.getId();
 
+        this.classesIn = new ArrayList<>();
         for (Class cls: user.getClassesIn()) {
             this.classesIn.add(cls.getClassID());
         }

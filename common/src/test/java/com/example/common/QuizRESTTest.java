@@ -1,6 +1,7 @@
 package com.example.common;
 
 import com.example.common.REST.ClassREST;
+import com.example.common.REST.PotatOsApi;
 import com.example.common.REST.QuizREST;
 import com.example.common.REST.UserREST;
 
@@ -25,6 +26,8 @@ class QuizRESTTest {
     @Test
     //the server must be running for this to work
     void testREST()  {
+        Assert.assertEquals(true, PotatOsApi.isServerUp());
+
         User user = new User(
                 false,
                 null,
@@ -34,7 +37,7 @@ class QuizRESTTest {
                 "asdfopjasdfopjasdoji",
                 0);
         UserREST.createUser(user);
-
+        Assert.assertNotEquals(0, user.getId());
 
 
         Class cls = new Class();
@@ -63,9 +66,9 @@ class QuizRESTTest {
 
         Assert.assertEquals("Science Class", cls.getClassName());
 
-        //if the database is clean, these should be set on creation, and 1
-        Assert.assertEquals(1, cls.getClassID());
-        Assert.assertEquals(1, user.getId());
+        //the ID's should be set, and not 0
+        Assert.assertNotEquals(0, cls.getClassID());
+        Assert.assertNotEquals(0, user.getId());
 
         Class dbCls = ClassREST.getClassById(cls.getClassID());
         Assert.assertNotEquals(null, dbCls);

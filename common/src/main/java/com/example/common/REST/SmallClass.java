@@ -18,18 +18,22 @@ public class SmallClass {
     private ArrayList<Integer> enrolledUsers;
     private ArrayList<Integer> quizzes;
 
-    public SmallClass() {}
+    public SmallClass() {
+        this.quizzes = new ArrayList<>();
+        this.enrolledUsers = new ArrayList<>();
+    }
 
     public SmallClass(Class cls) {
-        this.ownerId = cls.getOwner().getId();
+        this.ownerId = cls.getOwnerId();
         this.className = cls.getClassName();
         this.classCode = cls.getClassCode();
         this.classID = cls.getClassID();
+        this.quizzes = new ArrayList<>();
+        this.enrolledUsers = new ArrayList<>();
 
         for (Quiz quiz: cls.getQuizzes()) {
             quizzes.add(quiz.getId());
         }
-
         for (User user: cls.getUsers()) {
             enrolledUsers.add(user.getId());
         }

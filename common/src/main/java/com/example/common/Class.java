@@ -20,7 +20,19 @@ public class Class {
         this.classCode = classCode;
         this.quizzes = quizzes;
         this.users = users;
+
+        this.checkCollections();
+
     } // basic constructor
+
+    private void checkCollections() {
+        if (quizzes == null) {
+            this.quizzes = new ArrayList<>();
+        }
+        if (users == null) {
+            this.users = new ArrayList<>();
+        }
+    }
 
 
     public Class(SmallClass cls) {
@@ -28,10 +40,11 @@ public class Class {
         this.className = cls.getClassName();
         this.classCode = cls.getClassCode();
 
-        this.quizzes = new ArrayList<>();
+        this.checkCollections();
         for (int i: cls.getQuizzes()) {
             this.quizzes.add(QuizREST.getQuizById(i));
         }
+
 
         for (int i: cls.getEnrolledUsers()) {
             this.users.add(UserREST.getById(i));
@@ -42,8 +55,7 @@ public class Class {
         this.ownerId = 0;
         this.className = "";
         this.classCode = "";
-        this.quizzes = null;
-        this.users = null;
+        this.checkCollections();
         this.classID = 0;
     } // default constructor
 

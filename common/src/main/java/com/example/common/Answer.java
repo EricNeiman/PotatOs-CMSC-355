@@ -1,7 +1,5 @@
 package com.example.common;
 
-import javax.ws.rs.Path;
-
 public class Answer {
     private String letter; // answer letter (A, B, C, or D)
     private String answerText; // answer text (Limit of 60 character)
