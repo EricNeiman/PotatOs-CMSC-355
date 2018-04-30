@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="380dp"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toTopOf="@+id/bGrades"
+        app:layout_constraintEnd_toStartOf="@+id/TVquizpassword"
+        app:layout_constraintStart_toStartOf="@+id/TVquizpassword"
+        app:layout_constraintTop_toTopOf="@+id/bGrades">
 
         <EditText
             android:id="@+id/TVquizname"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_marginEnd="75dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/emptyString" />
+
+        <TextView
+            android:id="@+id/TVquizpassword"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:text="@string/emptyString6" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/bGrades"
@@ -24,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onSeeGradesClick"
-            android:text="See Grades" />
+            android:text="See Class Grades" />
 
         <Button
             android:id="@+id/bGotoQuiz"
@@ -35,10 +56,21 @@
             android:text="go to quiz" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/bGotoMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onGotoMainClick"
-        android:text="go to main" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="380dp"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/bGotoMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:onClick="onGotoMainClick"
+            android:text="go to main"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
 </LinearLayout>

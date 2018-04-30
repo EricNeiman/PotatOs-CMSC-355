@@ -8,12 +8,29 @@ import java.util.ArrayList;
 public class SmallUser {
     private boolean isTeacher; // true if user is a teacher
     private ArrayList<Integer> classesIn; // class user is in storage
+    private ArrayList<Integer> classesOwned;
     private String name; // user name
     private String email; // user email (used for sign in)
     private String passwordHash; // user password
     private int id; // user id
 
+    public SmallUser(User user) {
+        this.isTeacher = user.getIsTeacher();
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.passwordHash = user.getPasswordHash();
+        this.id = user.getId();
 
+        this.classesIn = new ArrayList<>();
+        for (Class cls: user.getClassesIn()) {
+            this.classesIn.add(cls.getClassID());
+        }
+
+        this.classesOwned = new ArrayList<>();
+        for (Class cls: user.getClassesOwned()) {
+            this.classesOwned.add(cls.getClassID());
+        }
+    }
     public boolean isTeacher() {
         return isTeacher;
     }
@@ -62,17 +79,12 @@ public class SmallUser {
         this.id = id;
     }
 
-    public SmallUser(User user) {
-        this.isTeacher = user.getIsTeacher();
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.passwordHash = user.getPasswordHash();
-        this.id = user.getId();
-
-        this.classesIn = new ArrayList<>();
-        for (Class cls: user.getClassesIn()) {
-            this.classesIn.add(cls.getClassID());
-        }
-
+    public ArrayList<Integer> getClassesOwned() {
+        return classesOwned;
     }
+
+    public void setClassesOwned(ArrayList<Integer> classesOwned) {
+        this.classesOwned = classesOwned;
+    }
+
 }

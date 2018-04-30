@@ -26,7 +26,9 @@ public class UserREST {
 
         String requestJson = gson.toJson(form);
         String json = PotatOsApi.postJson(GET_USER_BY_EMAIL_PASS, requestJson, true);
-        return gson.fromJson(json, User.class);
+        SmallUser usr = gson.fromJson(json, SmallUser.class);
+
+        return new User(usr);
     }
 
     //returns the copy of the user as interpreted by the server
@@ -48,8 +50,9 @@ public class UserREST {
 
     public static User getById(int userID) {
         Gson gson = new Gson();
-        String json = PotatOsApi.postJson(GET_USER_BY_ID + "/" + userID, true);
-        return gson.fromJson(json, User.class);
+        String json = PotatOsApi.postJson(GET_USER_BY_ID, gson.toJson(userID), true);
+        SmallUser usr = gson.fromJson(json, SmallUser.class);
+        return new User(usr);
     }
 
 

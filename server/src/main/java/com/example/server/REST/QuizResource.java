@@ -37,8 +37,10 @@ public class QuizResource {
             ).build();
         } catch (JsonSyntaxException ex) {
             System.out.println("Invalid json received.");
+            ex.printStackTrace();
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             System.out.println("SQL Error.");
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -74,9 +76,11 @@ public class QuizResource {
             rs = Response.status(Response.Status.OK).entity(gson.toJson(quiz)).build();
         } catch (JsonSyntaxException ex) {
             System.out.println("Invalid json received.");
+            ex.printStackTrace();
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         } catch (SQLException ex) {
             System.out.println("SQL Error.");
+            ex.printStackTrace();
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         }
         return rs;

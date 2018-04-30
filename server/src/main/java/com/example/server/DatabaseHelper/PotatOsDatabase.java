@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class PotatOsDatabase {
     private static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "PotatOs.db";
+    private static final String DATABASE_NAME = "PotatOs.db";
     private static final String TABLE_NAME = "words";
 
     private static Connection db;
@@ -25,7 +25,7 @@ public class PotatOsDatabase {
     };
 
     public static Connection getDbConnection() throws SQLException {
-        if (db == null) {
+        if (db == null || db.isClosed()) {
             db = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
         }
         return db;

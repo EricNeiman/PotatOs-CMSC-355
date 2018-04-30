@@ -36,6 +36,7 @@ public class ClassResource {
                     )
                     .build();
         } catch (SQLException e) {
+            e.printStackTrace();
             rs = Response.status(Response.Status.BAD_REQUEST).build();
         }
         return rs;
@@ -46,7 +47,7 @@ public class ClassResource {
     public Response getClassesForUserId(String message) {
         Gson gson = new Gson();
 
-        int id = Integer.getInteger(message);
+        int id = gson.fromJson(message, int.class);
         try {
             return Response.status(Response.Status.OK)
                     .entity(
@@ -55,6 +56,7 @@ public class ClassResource {
                     .build();
 
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -65,7 +67,7 @@ public class ClassResource {
     public Response getClassById(String message) {
         Gson gson = new Gson();
 
-        int id = Integer.getInteger(message);
+        int id = gson.fromJson(message, int.class);
 
         try {
             SmallClass cls = ClassTable.getClassById(id);
@@ -82,6 +84,7 @@ public class ClassResource {
                     .build();
 
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }

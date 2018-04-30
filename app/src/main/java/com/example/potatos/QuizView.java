@@ -14,6 +14,9 @@ public class QuizView extends Activity {
         String quizname = getIntent().getStringExtra("Quizname");
         TextView tv = (TextView)findViewById(R.id.TVquizname);
         tv.setText(quizname);
+        String quizpassword = getIntent().getStringExtra("Quizpassword");
+        TextView tv1 = (TextView)findViewById(R.id.TVquizpassword);
+        tv1.setText(quizpassword);
     }
 
     public void onGotoQuizClick(View v)  {
