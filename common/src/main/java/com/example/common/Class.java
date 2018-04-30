@@ -3,6 +3,7 @@ package com.example.common;
 import com.example.common.REST.QuizREST;
 import com.example.common.REST.SmallClass;
 import com.example.common.REST.UserREST;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -73,6 +74,9 @@ public class Class {
     public void setQuizzes(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
     }
+    public void appendQuizzes(Quiz q) {
+        this.quizzes.add(q);
+    }
 
     public int getOwnerId() {
         return ownerId;
@@ -106,5 +110,15 @@ public class Class {
 
     public void setClassID(int classID) {
         this.classID = classID;
+    }
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(new SmallClass(this));
+    }
+
+    public static Class fromJson(String json) {
+        Gson gson = new Gson();
+        return new Class(gson.fromJson(json, SmallClass.class));
     }
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.common.REST.QuizREST;
+
 public class CreateQuiz extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

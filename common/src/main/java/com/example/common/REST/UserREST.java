@@ -27,8 +27,12 @@ public class UserREST {
         String requestJson = gson.toJson(form);
         String json = PotatOsApi.postJson(GET_USER_BY_EMAIL_PASS, requestJson, true);
         SmallUser usr = gson.fromJson(json, SmallUser.class);
+        if (usr == null) {
+            return null;
 
-        return new User(usr);
+        } else {
+            return new User(usr);
+        }
     }
 
     //returns the copy of the user as interpreted by the server

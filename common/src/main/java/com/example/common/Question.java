@@ -1,5 +1,7 @@
 package com.example.common;
 
+import com.google.gson.Gson;
+
 public class Question {
     private String prompt; // question text
     private QuestionImage image; // picture for question
@@ -80,5 +82,15 @@ public class Question {
 
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
+    }
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public static Question fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Question.class);
     }
 }

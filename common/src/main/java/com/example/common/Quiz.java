@@ -1,5 +1,7 @@
 package com.example.common;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Date; // for close time
 
@@ -130,5 +132,15 @@ public class Quiz {
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public static Quiz fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Quiz.class);
     }
 }

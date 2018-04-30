@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.common.User;
-import com.google.gson.Gson;
 
 import static com.example.common.REST.UserREST.getByEmailPass;
 
@@ -33,16 +32,14 @@ public class MainActivity extends AppCompatActivity {
                     User user = getByEmailPass(email, password);
                     if (user != null) {
                         if (user.getIsTeacher()){
-                            Gson gson = new Gson();
-                            String requestJson = gson.toJson(user);
+                            String requestJson = user.toJson();
 
                             Intent overviewTeacher = new Intent(getApplicationContext(), TeacherOverview.class);
                             overviewTeacher.putExtra("com.example.potatos.logIn", requestJson);
                             startActivity(overviewTeacher);
                         }
                         else {
-                            Gson gson = new Gson();
-                            String requestJson = gson.toJson(user);
+                            String requestJson = user.toJson();
 
                             Intent overviewStudent = new Intent(getApplicationContext(), StudentOverview.class);
                             overviewStudent.putExtra("com.example.potatos.logIn", requestJson);

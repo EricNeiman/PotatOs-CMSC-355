@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.common.Answer;
 import com.example.common.Quiz;
 import com.example.common.User;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -35,14 +34,13 @@ public class Question extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        Gson gson = new Gson();
         json = getIntent().getStringExtra("com.example.potatos.logIn");
         jsonClass = getIntent().getStringExtra("com.example.potatos.CLASS");
         jsonQuiz = getIntent().getStringExtra("com.example.potatos.QUIZ");
         jsonQuestion = getIntent().getStringExtra("com.example.potatos.QUESTION");
-        user = gson.fromJson(json, User.class);
-        userQuiz = gson.fromJson(jsonQuiz, Quiz.class);
-        userQuestion = gson.fromJson(jsonQuestion, com.example.common.Question.class);
+        user = User.fromJson(json);
+        userQuiz = Quiz.fromJson(jsonQuiz);
+        userQuestion = com.example.common.Question.fromJson(jsonQuestion);
         questionList = userQuiz.getQuestions();
         answerList = userQuestion.getAnswers();
 
@@ -89,8 +87,7 @@ public class Question extends AppCompatActivity {
                 }
                 //Move to the next question in the Quiz
                 if (position < questionList.size()) { //makes sure we don't go out of bounds
-                    Gson gson = new Gson();
-                    jsonNewQuestion = gson.toJson(questionList.get(position + 1));
+                    jsonNewQuestion = questionList.get(position + 1).toJson();
 
                     Intent nextQuestion = new Intent(getApplicationContext(), Question.class);
                     Bundle extras = new Bundle();
@@ -148,8 +145,7 @@ public class Question extends AppCompatActivity {
                 }
                 //Move to the next question in the Quiz
                 if (position > 0) {
-                    Gson gson = new Gson();
-                    jsonNewQuestion = gson.toJson(questionList.get(position - 1));
+                    jsonNewQuestion = questionList.get(position - 1).toJson();
 
                     Intent prevQuestion = new Intent(getApplicationContext(), Question.class);
                     Bundle extras = new Bundle();
