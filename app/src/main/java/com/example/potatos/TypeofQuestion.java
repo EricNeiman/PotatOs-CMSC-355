@@ -75,21 +75,21 @@ public class TypeofQuestion extends Activity {
         }
     }
 
-//    public void onAddTextClick(View v)  {
-//        if(v.getId() == R.id.bAddText)  {
-//            Intent i = new Intent(this, AddText.class);
-//            startActivity(i);
-//
-//        }
-//    }
-//
-//    public void onAddAnswerClick(View v){
-//        if(v.getId() == R.id.bAddAnswer) {
-//            Intent i = new Intent(this, AddAnswer.class);
-//            startActivity(i);
-//        }
-//
-//    }
+    public void onAddTextClick(View v)  {
+        if(v.getId() == R.id.bAddText)  {
+            Intent i = new Intent(this, AddText.class);
+            startActivity(i);
+
+        }
+    }
+
+    public void onAddAnswerClick(View v){
+        if(v.getId() == R.id.bAddAnswer) {
+            Intent i = new Intent(this, AddAnswer.class);
+            startActivity(i);
+        }
+
+    }
 
     public void onSaveQuestionClick(View v){
         if(v.getId() == R.id.bSaveQuestion) {
