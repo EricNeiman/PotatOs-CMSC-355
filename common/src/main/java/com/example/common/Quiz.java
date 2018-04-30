@@ -13,12 +13,14 @@ public class Quiz {
     private Date closeTime; // date that the quiz closes
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
-    private Boolean submitted; // true if quiz was submitted
+    private Boolean submitted; // true if quiz was submitted on time
+    private int id; //database id
     private Boolean submittedOnTime; // true if quiz was submitted on time
-    private int id; // database id
-    private int classId; // class id
+    private int classId;
+    private int studentId;
+    private boolean isTaken;
 
-    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
+    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted, boolean isTaken, int studentId) {
         this.quizName = quizName;
         this.password = password;
         this.questions = questions;
@@ -27,7 +29,9 @@ public class Quiz {
         this.timer = timer;
         this.owner = owner;
         this.submitted = submitted;
+        this.isTaken = isTaken;
         this.submittedOnTime = false;
+        this.studentId = studentId;
     } // basic constructor
 
     public Quiz() {
@@ -40,6 +44,10 @@ public class Quiz {
         this.owner = null;
         this.submitted = false;
         this.submittedOnTime = false;
+
+        this.classId = 0;
+        this.isTaken = false;
+        this.studentId = 0;
     } // default constructor
 
     public boolean isOpen() {
@@ -139,17 +147,6 @@ public class Quiz {
 
     public void setSubmitted(Boolean submitted) {
         this.submitted = submitted;
-        if (this.isOpen()) {
-            this.submittedOnTime = true;
-        }
-    }
-
-    public Boolean getSubmittedOnTime() {
-        return submittedOnTime;
-    }
-
-    public void setSubmittedOnTime(Boolean submittedOnTime) {
-        this.submittedOnTime = submittedOnTime;
     }
 
     public int getId() {
@@ -168,5 +165,29 @@ public class Quiz {
     public static Quiz fromJson(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, Quiz.class);
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
+    }
+
+    public boolean isTaken() {
+        return isTaken;
+    }
+
+    public void setTaken(boolean taken) {
+        isTaken = taken;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }

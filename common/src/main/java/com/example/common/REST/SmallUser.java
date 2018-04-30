@@ -14,13 +14,14 @@ public class SmallUser {
     private String passwordHash; // user password
     private int id; // user id
 
+
+
     public SmallUser(User user) {
         this.isTeacher = user.getIsTeacher();
         this.name = user.getName();
         this.email = user.getEmail();
         this.passwordHash = user.getPasswordHash();
         this.id = user.getId();
-
         this.classesIn = new ArrayList<>();
         for (Class cls: user.getClassesIn()) {
             this.classesIn.add(cls.getClassID());

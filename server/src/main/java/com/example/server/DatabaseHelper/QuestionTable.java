@@ -48,4 +48,14 @@ public class QuestionTable {
         //set the id to the created id
         question.setId(query.getGeneratedKeys().getInt(1));
     }
+
+    public static void deleteQuestion(int i) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
+        PreparedStatement query = db.prepareStatement(
+                "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_QUESTION_ID + "=?;"
+        );
+
+        query.setInt(1, i);
+        query.execute();
+    }
 }

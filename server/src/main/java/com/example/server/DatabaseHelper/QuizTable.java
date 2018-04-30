@@ -38,6 +38,8 @@ public class QuizTable {
     public static final String COLUMN_OWNER_USER_ID = "ownerUserId";
     public static final String COLUMN_SUBMITTED = "submitted";
     public static final String COLUMN_CLASS_ID = "classId";
+    public static final String COLUMN_IS_TAKEN = "isTaken";
+    public static final String COLUMN_STUDENT_ID = "studentId";
 
     public static final String CREATE_SQL = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_QUIZ_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -48,7 +50,10 @@ public class QuizTable {
             COLUMN_TIMER + " REAL, " +
             COLUMN_OWNER_USER_ID + " INTEGER, " +
             COLUMN_SUBMITTED + " INTEGER," +
-            COLUMN_CLASS_ID + " INTEGER" + ");";
+            COLUMN_CLASS_ID + " INTEGER, " +
+            COLUMN_IS_TAKEN + " INTEGER, " +
+            COLUMN_STUDENT_ID + " INTEGER " +
+            ");";
 
 
 
@@ -63,7 +68,11 @@ public class QuizTable {
                         COLUMN_OPEN_TIME + ", " +
                         COLUMN_TIMER + ", " +
                         COLUMN_OWNER_USER_ID + ", " +
-                        COLUMN_SUBMITTED + ") VALUES (?,?,?,?,?,?,?);"
+                        COLUMN_SUBMITTED + ", " +
+                        COLUMN_CLASS_ID + ", " +
+                        COLUMN_IS_TAKEN + ", " +
+                        COLUMN_STUDENT_ID +
+                        ") VALUES (?,?,?,?,?,?,?,?,?,?);"
         );
 
         query.setString(1, quiz.getQuizName());
@@ -73,6 +82,9 @@ public class QuizTable {
         query.setDouble(5, quiz.getTimer());
         query.setInt(6, quiz.getOwner().getId());
         query.setBoolean(7, quiz.getSubmitted());
+        query.setInt(8, quiz.getClassId());
+        query.setBoolean(9, quiz.isTaken());
+        query.setInt(10, quiz.getStudentId());
         query.execute();
 
         quiz.setId(query.getGeneratedKeys().getInt(1));
@@ -89,7 +101,11 @@ public class QuizTable {
                 COLUMN_OPEN_TIME + ", " +
                 COLUMN_TIMER + ", " +
                 COLUMN_OWNER_USER_ID + ", " +
-                COLUMN_SUBMITTED + " FROM " + TABLE_NAME + " WHERE " + COLUMN_QUIZ_ID + "=?;"
+                COLUMN_SUBMITTED + ", " +
+                COLUMN_CLASS_ID + ", " +
+                COLUMN_IS_TAKEN + ", " +
+                COLUMN_STUDENT_ID +
+                " FROM " + TABLE_NAME + " WHERE " + COLUMN_QUIZ_ID + "=?;"
         );
 
         query.setInt(1, id);
@@ -104,10 +120,26 @@ public class QuizTable {
             quiz.setTimer(rs.getDouble(5));
             quiz.setOwner(UserTable.getUserById(rs.getInt(6)));
             quiz.setSubmitted(rs.getBoolean(7));
+            quiz.setClassId(rs.getInt(8));
+            quiz.setTaken(rs.getBoolean(9));
+            quiz.setStudentId(rs.getInt(10));
+
+            quiz.setId(id);
             return quiz;
         } else {
             return null;
         }
+    }
+
+    public void deleteQuizById(int id) throws SQLException {
+        Connection db = PotatOsDatabase.getDbConnection();
+        PreparedStatement query = db.prepareStatement(
+                "DELETE FROM " +
+                        TABLE_NAME + " WHERE " +
+                        QuizTable.COLUMN_QUIZ_ID + "=?;");
+
+        query.setInt(1, id);
+        query.execute();
     }
 
     public static ArrayList<Integer> getQuizzesByClassId(int classID) throws SQLException {
