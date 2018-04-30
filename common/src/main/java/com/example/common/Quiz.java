@@ -13,12 +13,20 @@ public class Quiz {
     private Date closeTime; // date that the quiz closes
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
+<<<<<<< Updated upstream
     private Boolean submitted; // true if quiz was submitted
     private Boolean submittedOnTime; // true if quiz was submitted on time
     private int id; // database id
     private int classId; // class id
+=======
+    private Boolean submitted; // true if quiz was submitted on time
+    private int id; //database id
+    private int classId;
+    private int studentId;
+    private boolean isTaken;
+>>>>>>> Stashed changes
 
-    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
+    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted, boolean isTaken, int studentId) {
         this.quizName = quizName;
         this.password = password;
         this.questions = questions;
@@ -27,7 +35,12 @@ public class Quiz {
         this.timer = timer;
         this.owner = owner;
         this.submitted = submitted;
+<<<<<<< Updated upstream
         this.submittedOnTime = false;
+=======
+        this.isTaken = isTaken;
+        this.studentId = studentId;
+>>>>>>> Stashed changes
     } // basic constructor
 
     public Quiz() {
@@ -39,7 +52,13 @@ public class Quiz {
         this.timer = 0.0;
         this.owner = null;
         this.submitted = false;
+<<<<<<< Updated upstream
         this.submittedOnTime = false;
+=======
+        this.classId = 0;
+        this.isTaken = false;
+        this.studentId = 0;
+>>>>>>> Stashed changes
     } // default constructor
 
     public boolean isOpen() {
@@ -168,5 +187,29 @@ public class Quiz {
     public static Quiz fromJson(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, Quiz.class);
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
+    }
+
+    public boolean isTaken() {
+        return isTaken;
+    }
+
+    public void setTaken(boolean taken) {
+        isTaken = taken;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }
