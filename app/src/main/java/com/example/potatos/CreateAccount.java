@@ -24,7 +24,6 @@ public class CreateAccount extends Activity {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         }
-
     }
 }
 
