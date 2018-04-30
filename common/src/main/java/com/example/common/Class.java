@@ -73,6 +73,9 @@ public class Class {
     public void setQuizzes(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
     }
+    public void appendQuizzes(Quiz q) {
+        this.quizzes.add(q);
+    }
 
     public int getOwnerId() {
         return ownerId;
