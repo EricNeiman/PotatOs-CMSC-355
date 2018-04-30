@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class TeacherOverview extends AppCompatActivity {
+public class StudentOverview extends AppCompatActivity {
     Toolbar toolbar;
     ListView classListView;
     User user;
@@ -33,17 +33,15 @@ public class TeacherOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_overview);
+        setContentView(R.layout.activity_student_overview);
         //Setup overhead toolbar with appropriate options
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("The Quiz App");
 
-
         //Create the class display;
         createDisplayList();
 
-        //When the person clicks on of the List items, go to the class.
         classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,21 +57,21 @@ public class TeacherOverview extends AppCompatActivity {
                 startActivity(showClassQuizzes);
             }
         });
-
+        
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.option_menu_teacher, menu);
+        inflater.inflate(R.menu.option_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.createClass:
+        switch (item.getItemId()){
+            case R.id.joinClass:
                 //Go to the join class Activity
                 return true;
             case R.id.logOut:
@@ -84,12 +82,12 @@ public class TeacherOverview extends AppCompatActivity {
         }
     }
 
-    public void createDisplayList() {
+    public void createDisplayList(){
         classListView = findViewById(R.id.classListView);
 
         Gson gson = new Gson();
         json = getIntent().getStringExtra("com.example.potatos.logIn");
-        user = gson.fromJson(json, User.class);
+        user = gson.fromJson(json , User.class);
 
         classList = user.getClassesIn();
         classes = new String[classList.size()];
@@ -97,27 +95,27 @@ public class TeacherOverview extends AppCompatActivity {
         numOfOpenQuizzes = new int[classList.size()];
         numOfStudents = new int[classList.size()];
         int i = 0;
-        for (Class object : classList) {
+        for (Class object: classList) {
             classes[i] = object.getClassName();
             i++;
         }
         i = 0;
-        for (Class object : classList) {
+        for (Class object: classList) {
             numOfQuizzes[i] = object.getQuizzes().size();
             i++;
         }
         i = 0;
-        for (Class object : classList) {
+        for (Class object: classList) {
             int sum = 0;
-            for (Quiz quiz : object.getQuizzes()) {
+            for (Quiz quiz: object.getQuizzes()) {
                 if (quiz.isOpen())
                     sum++;
             }
             numOfOpenQuizzes[i] = sum;//
             i++;
         }
-        i = 0;
-        for (Class object : classList) {
+        i=0;
+        for (Class object: classList) {
             numOfStudents[i] = object.getUsers().size();
             i++;
         }
@@ -128,5 +126,3 @@ public class TeacherOverview extends AppCompatActivity {
         classListView.setAdapter(classAdapter);
     }
 }
-
-

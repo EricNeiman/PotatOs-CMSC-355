@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/classNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="33dp"
         android:text="@string/className"
         android:textAlignment="center"
-        android:textSize="32sp" />
-
-    <TextView
-        android:id="@+id/numQuizzesTextView"
-        android:layout_width="497dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/classNameTextView"
-        android:layout_marginEnd="156dp"
-        android:text="@string/numQuiz"
-        android:textAlignment="textEnd"
         android:textSize="24sp" />
 
     <TextView
+        android:id="@+id/numQuizzesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/classNameTextView"
+        android:text="@string/numQuiz"
+        android:textAlignment="viewStart"
+        android:textSize="18sp" />
+
+    <TextView
         android:id="@+id/numOpenQuizzesTextView"
-        android:layout_width="497dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/numQuizzesTextView"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/numQuizzesTextView"
         android:text="@string/numOpenQuiz"
-        android:textAlignment="textEnd"
-        android:textSize="24sp" />
+        android:textAlignment="viewStart"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/numStudentsTextView"
-        android:layout_width="497dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/numOpenQuizzesTextView"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/numOpenQuizzesTextView"
         android:text="@string/numStudent"
-        android:textAlignment="textEnd"
-        android:textSize="24sp" />
+        android:textAlignment="viewStart"
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

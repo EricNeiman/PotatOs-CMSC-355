@@ -20,13 +20,15 @@
         <activity android:name=".CreateAccount" />
         <activity android:name=".ClassQuizzes" />
         <activity android:name=".CreateQuiz" />
-        <activity android:name=".AddAnswer" />
         <activity android:name=".TypeofQuestion" />
         <activity android:name=".QuizInfo" />
         <activity android:name=".QuizView" />
         <activity android:name=".View_grades" />
-        <activity android:name=".AddText" />
-        <activity android:name=".Question_Teacher"></activity>
+        <activity android:name=".Question_Teacher" />
+        <activity android:name=".StudentOverview" />
+        <activity android:name=".Question_Teacher_Add" />
+        <activity android:name=".ClassQuizzes_Teacher" />
+        <activity android:name=".QuizQuestions_Teacher"></activity>
     </application>
 
 </manifest>

@@ -27,4 +27,7 @@
     <string name="emptyString4" />
     <string name="emptyString5" />
     <string name="returnQuiz">Return to Quiz</string>
+    <string name="log_out">Log Out</string>
+    <string name="joinClass">Join Class</string>
+    <string name="settings">Settings</string>
 </resources>

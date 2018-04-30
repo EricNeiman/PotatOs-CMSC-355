@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.common.User;
 import com.google.gson.Gson;
@@ -14,11 +15,12 @@ import static com.example.common.REST.UserREST.getByEmailPass;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         Button logInBtn = findViewById(R.id.logInBtn);
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,26 +29,33 @@ public class MainActivity extends AppCompatActivity {
                 EditText passwordEditText = findViewById(R.id.passwordEditText);
                 String email = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                User user = getByEmailPass(email, password);
+                try{
+                    User user = getByEmailPass(email, password);
+                    if (user != null) {
+                        if (user.getIsTeacher()){
+                            Gson gson = new Gson();
+                            String requestJson = gson.toJson(user);
 
-                if (user != null) {
-                    if (user.getIsTeacher()){
-                        Gson gson = new Gson();
-                        String requestJson = gson.toJson(user);
+                            Intent overviewTeacher = new Intent(getApplicationContext(), TeacherOverview.class);
+                            overviewTeacher.putExtra("com.example.potatos.logIn", requestJson);
+                            startActivity(overviewTeacher);
+                        }
+                        else {
+                            Gson gson = new Gson();
+                            String requestJson = gson.toJson(user);
 
-                        Intent overviewTeacher = new Intent(getApplicationContext(), TeacherOverview.class);
-                        overviewTeacher.putExtra("com.example.potatoes.logIn", requestJson);
-                        startActivity(overviewTeacher);
-                    }
-                    else {
-                        Gson gson = new Gson();
-                        String requestJson = gson.toJson(user);
-
-                        Intent overviewTeacher = new Intent(getApplicationContext(), TeacherOverview.class);
-                        overviewTeacher.putExtra("com.example.potatoes.logIn", requestJson);
-                        startActivity(overviewTeacher);
+                            Intent overviewStudent = new Intent(getApplicationContext(), StudentOverview.class);
+                            overviewStudent.putExtra("com.example.potatos.logIn", requestJson);
+                            startActivity(overviewStudent);
+                        }
                     }
                 }
+                catch (Exception e) {
+                    Toast.makeText(MainActivity.this,
+                            "The App is currently not working", Toast.LENGTH_LONG).show();
+                }
+
+
             }
         });
 
@@ -56,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
             }
         });
+
+
     }
 
 }

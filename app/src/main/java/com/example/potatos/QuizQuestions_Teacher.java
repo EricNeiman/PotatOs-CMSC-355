@@ -11,64 +11,68 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.common.Class;
+import com.example.common.Question;
 import com.example.common.Quiz;
 import com.example.common.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class ClassQuizzes extends AppCompatActivity {
+public class QuizQuestions_Teacher extends AppCompatActivity {
     Toolbar toolbar;
-    ListView quizListView;
+    ListView questListView;
     String json;
     String jsonClass;
     String jsonQuiz;
+    String jsonQuestion;
     User user;
     Class userClass;
-    ArrayList<Quiz> quizList;
-    String[] quizzes;
+    Quiz userQuiz;
+    ArrayList<Question> questionList;
+    int[] numberOrder;
+    int[] pointValues;
+    String[] questionAnswered;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_class_quizzes);
+        setContentView(R.layout.activity_quiz_questions__teacher);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Class Name");
+        toolbar.setTitle("Quiz Name"); //Todo, make proper name based on quiz
 
         createDisplayList();
 
-        quizListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showQuizQuestions = new Intent(getApplicationContext(), QuizQuestions.class);
+                Intent showQuestions = new Intent(getApplicationContext(), com.example.potatos.Question.class);
                 Bundle extras = new Bundle();
-                extras.putInt("com.example.potatos.QUIZ_INDEX", position);
+                extras.putInt("com.example.potatos.QUESTION_INDEX", position);
                 extras.putString("com.example.potatos.logIn", json);
                 extras.putString("com.example.potatos.CLASS", jsonClass);
-                Gson gson = new Gson();
-                jsonQuiz = gson.toJson(quizList.get(position));
                 extras.putString("com.example.potatos.QUIZ", jsonQuiz);
-                showQuizQuestions.putExtras(extras);
-                startActivity(showQuizQuestions);
+                Gson gson = new Gson();
+                jsonQuestion = gson.toJson(questionList.get(position));
+                extras.putString("com.example.potatos.QUESTION", jsonQuestion);
+
+                showQuestions.putExtras(extras);
+                startActivity(showQuestions);
             }
         });
     }
-
+    //todo create option menu for quiz if at all.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        //todo change option_menu to custom menu for quiz management
         inflater.inflate(R.menu.option_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //todo change these to the new option_menu_X
         switch (item.getItemId()){
             case R.id.joinClass:
                 //Go to the join class Activity
@@ -82,21 +86,40 @@ public class ClassQuizzes extends AppCompatActivity {
     }
 
     public void createDisplayList() {
+        questListView = findViewById(R.id.questionListView);
+
         Gson gson = new Gson();
         json = getIntent().getStringExtra("com.example.potatos.logIn");
-        user = gson.fromJson(json , User.class);
         jsonClass = getIntent().getStringExtra("com.example.potatos.CLASS");
+        jsonQuiz = getIntent().getStringExtra("com.example.potatos.QUIZ");
+        user = gson.fromJson(json, User.class);
         userClass = gson.fromJson(jsonClass, Class.class);
+        userQuiz = gson.fromJson(jsonQuiz, Quiz.class);
 
-        quizList = userClass.getQuizzes();
+        questionList = userQuiz.getQuestions();
+        numberOrder = new int[questionList.size()];
+        pointValues = new int[questionList.size()];
+        questionAnswered = new String[questionList.size()];
         int i = 0;
-        for (Quiz object: quizList){
-            quizzes[i] = object.getQuizName();
+        for (com.example.common.Question object: questionList){
+            numberOrder[i] = i+1;
+            i++;
+        }
+        i = 0;
+        for (com.example.common.Question object: questionList){
+            pointValues[i] = object.getPointValue();
+            i++;
+        }
+        i = 0;
+        for (com.example.common.Question object: questionList) {
+            if (object.isAnswered())
+                questionAnswered[i] = "Answered";
+            else
+                questionAnswered[i] = "Not Answered";
             i++;
         }
 
-
-        AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
-        quizListView.setAdapter(quizAdapter);
+        AdapterQuestion questionAdapter = new AdapterQuestion(this, numberOrder, pointValues, questionAnswered);
+        questListView.setAdapter(questionAdapter);
     }
 }

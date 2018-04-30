@@ -18,9 +18,9 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class ClassQuizzes extends AppCompatActivity {
+public class ClassQuizzes_Teacher extends AppCompatActivity {
     Toolbar toolbar;
-    ListView quizListView;
+    ListView quizListView; //todo: needs new listView to add checkbox for Open/Delete Options
     String json;
     String jsonClass;
     String jsonQuiz;
@@ -33,7 +33,7 @@ public class ClassQuizzes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_class_quizzes);
+        setContentView(R.layout.activity_class_quizzes__teacher);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

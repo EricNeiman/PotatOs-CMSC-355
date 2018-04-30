@@ -5,30 +5,28 @@
 
     <TextView
         android:id="@+id/numberTextView"
-        android:layout_width="76dp"
-        android:layout_height="74dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="22dp"
         android:text="##"
-        android:textSize="52sp" />
+        android:textSize="40sp" />
 
     <TextView
         android:id="@+id/pointsTextView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/numberTextView"
         android:layout_toEndOf="@+id/numberTextView"
         android:text="Point Value"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/answeredTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pointsTextView"
         android:layout_toEndOf="@+id/numberTextView"
         android:text="(Answered or Unanswered)"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 </RelativeLayout>
