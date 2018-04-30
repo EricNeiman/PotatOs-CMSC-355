@@ -42,4 +42,14 @@
     <string name="create_new_class">Create New Class</string>
     <string name="enter_class_code">Enter Class Code</string>
     <string name="enter_class_name">Enter Class Name</string>
+    <string name="answer_b">Answer B</string>
+    <string name="answer_c">Answer C</string>
+    <string name="answer_d">Answer D</string>
+    <string name="question_prompt">Question Prompt</string>
+    <string name="answer_a_feedback">Answer A Feedback</string>
+    <string name="answer_b_feedback">Answer B Feedback</string>
+    <string name="answer_c_feedback">Answer C Feedback</string>
+    <string name="answer_d_feedback">Answer D Feedback</string>
+    <string name="answer_a">Answer A</string>
+    <string name="save_question">Save Question</string>
 </resources>
