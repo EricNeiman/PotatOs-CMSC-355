@@ -2,7 +2,6 @@ package com.example.common;
 
 import java.util.ArrayList;
 import java.util.Date; // for close time
-import java.time.LocalDateTime; // for is open
 
 public class Quiz {
     private String quizName; // quiz name text
