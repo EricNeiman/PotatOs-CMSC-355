@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -34,6 +37,52 @@ public class QuizQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_questions);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Quiz Name"); //Todo, make proper name based on quiz
+
+        createDisplayList();
+
+        questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent showQuestions = new Intent(getApplicationContext(), com.example.potatos.Question.class);
+                Bundle extras = new Bundle();
+                extras.putInt("com.example.potatos.QUESTION_INDEX", position);
+                extras.putString("com.example.potatos.logIn", json);
+                extras.putString("com.example.potatos.CLASS", jsonClass);
+                extras.putString("com.example.potatos.QUIZ", jsonQuiz);
+                Gson gson = new Gson();
+                jsonQuestion = gson.toJson(questionList.get(position));
+                extras.putString("com.example.potatos.QUESTION", jsonQuestion);
+
+                showQuestions.putExtras(extras);
+                startActivity(showQuestions);
+            }
+        });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.joinClass:
+                //Go to the join class Activity
+                return true;
+            case R.id.logOut:
+                //return to Main Activity
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void createDisplayList() {
         questListView = findViewById(R.id.questionListView);
 
         Gson gson = new Gson();
@@ -69,23 +118,5 @@ public class QuizQuestions extends AppCompatActivity {
 
         AdapterQuestion questionAdapter = new AdapterQuestion(this, numberOrder, pointValues, questionAnswered);
         questListView.setAdapter(questionAdapter);
-
-        questListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showQuestions = new Intent(getApplicationContext(), Question.class);
-                Bundle extras = new Bundle();
-                extras.putInt("com.example.potatos.QUESTION_INDEX", position);
-                extras.putString("com.example.potatos.logIn", json);
-                extras.putString("com.example.potatos.CLASS", jsonClass);
-                extras.putString("com.example.potatos.QUIZ", jsonQuiz);
-                Gson gson = new Gson();
-                jsonQuestion = gson.toJson(questionList.get(position));
-                extras.putString("com.example.potatos.QUESTION", jsonQuestion);
-
-                showQuestions.putExtras(extras);
-                startActivity(showQuestions);
-            }
-        });
     }
 }

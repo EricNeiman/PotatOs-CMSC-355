@@ -73,9 +73,15 @@ public class StudentOverview extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.joinClass:
                 //Go to the join class Activity
+                Intent joinClass = new Intent(getApplicationContext(), JoinClass.class);
+                joinClass.putExtra("com.example.potatos.logIn", json);
+                startActivity(joinClass);
                 return true;
             case R.id.logOut:
                 //return to Main Activity
+                Intent returnToMain = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(returnToMain);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.common.Class;
@@ -61,8 +62,7 @@ public class ClassQuizzes extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        //todo change option_menu to custom menu for quiz management
-        inflater.inflate(R.menu.option_menu, menu);
+        inflater.inflate(R.menu.option_menu_logout, menu);
         return true;
     }
 
@@ -70,11 +70,9 @@ public class ClassQuizzes extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //todo change these to the new option_menu_X
         switch (item.getItemId()){
-            case R.id.joinClass:
-                //Go to the join class Activity
-                return true;
-            case R.id.logOut:
+            case R.id.logOutBtn:
                 //return to Main Activity
+                logOff();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -98,5 +96,10 @@ public class ClassQuizzes extends AppCompatActivity {
 
         AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
         quizListView.setAdapter(quizAdapter);
+    }
+
+    public void logOff() {
+        Intent logOut = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(logOut);
     }
 }

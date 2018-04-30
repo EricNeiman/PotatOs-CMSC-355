@@ -28,7 +28,9 @@
         <activity android:name=".StudentOverview" />
         <activity android:name=".Question_Teacher_Add" />
         <activity android:name=".ClassQuizzes_Teacher" />
-        <activity android:name=".QuizQuestions_Teacher"></activity>
+        <activity android:name=".QuizQuestions_Teacher" />
+        <activity android:name=".QuizQuestions" />
+        <activity android:name=".JoinClass"></activity>
     </application>
 
 </manifest>

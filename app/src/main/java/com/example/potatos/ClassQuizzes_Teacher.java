@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ClassQuizzes_Teacher extends AppCompatActivity {
     Toolbar toolbar;
-    ListView quizListView; //todo: needs new listView to add checkbox for Open/Delete Options
+    ListView quizListView;
     String json;
     String jsonClass;
     String jsonQuiz;
@@ -96,7 +96,7 @@ public class ClassQuizzes_Teacher extends AppCompatActivity {
         }
 
 
-        AdapterQuiz quizAdapter = new AdapterQuiz(this, quizzes);
-        quizListView.setAdapter(quizAdapter);
+        AdapterQuizTeacher quizAdapterTeacher = new AdapterQuizTeacher(this, quizzes, false);
+        quizListView.setAdapter(quizAdapterTeacher);
     }
 }

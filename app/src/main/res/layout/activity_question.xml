@@ -74,10 +74,40 @@
     <RadioGroup
         android:id="@+id/radio_group_selection"
         android:layout_width="55dp"
-        android:layout_height="272dp"
+        android:layout_height="280dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/questionTextView"
-        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView">
+
+        <RadioButton
+            android:id="@+id/radioBtnA"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/a" />
+
+        <RadioButton
+            android:id="@+id/radioBtnB"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/b" />
+
+        <RadioButton
+            android:id="@+id/radioBtnC"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/c" />
+
+        <RadioButton
+            android:id="@+id/radioBtnD"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/d" />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/nextQuestion"
@@ -85,8 +115,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Next Question"
-        android:textSize="11sp"
+        android:text="@string/next_question"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -96,8 +126,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:text="Previous Question"
-        android:textSize="11sp"
+        android:text="@string/previous_question"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.common.Answer;
 import com.example.common.Quiz;
@@ -53,13 +54,13 @@ public class Question extends AppCompatActivity {
         answerTextView[2] = findViewById(R.id.answerTextViewC);
         answerTextView[3] = findViewById(R.id.answerTextViewD);
 
+        //Put the text of the question and answers in the TextViews
         questionText.setText(userQuestion.getPrompt());
         for (int i = 0; i < answerList.length; i++){
             answerTextView[i].setText(answerList[i].getAnswerText());
         }
 
         //Run the Buttons and allow the user to select them.
-        createRadioButtons();
         setupNextSelectedButton();
         setupPrevSelectedButton();
     }
@@ -103,6 +104,7 @@ public class Question extends AppCompatActivity {
 
                     nextQuestion.putExtras(extras);
                     startActivity(nextQuestion);
+                    finish();
                 }
                 //if we are at the last question, replace button with return to quiz.
                 else {
@@ -116,7 +118,7 @@ public class Question extends AppCompatActivity {
 
                     returnToQuiz.putExtras(extras);
                     startActivity(returnToQuiz);
-
+                    finish();
                 }
             }
         });
@@ -159,6 +161,7 @@ public class Question extends AppCompatActivity {
 
                     prevQuestion.putExtras(extras);
                     startActivity(prevQuestion);
+                    finish();
                 }
                 else {
                     Intent returnToQuiz = new Intent(getApplicationContext(), Quiz.class);
@@ -171,35 +174,10 @@ public class Question extends AppCompatActivity {
 
                     returnToQuiz.putExtras(extras);
                     startActivity(returnToQuiz);
+                    finish();
                 }
             }
         });
-    }
-
-    public void createRadioButtons() {
-        RadioGroup selection = findViewById(R.id.radio_group_selection);
-
-        String[] letter_selections =  getResources().getStringArray(R.array.letter_selection);
-
-        for (int i = 0; i < letter_selections.length; i++) {
-            String letter_selection = letter_selections[i];
-
-            RadioButton button = new RadioButton(this);
-            button.setText(letter_selection);
-
-
-            //Set on click event
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
-            //add radio group
-
-            selection.addView(button);
-        }
     }
 
     public void setAllAnswersFalse() {
