@@ -93,12 +93,18 @@ public class User {
     public void setClassesIn(ArrayList<Class> classesIn) {
         this.classesIn = classesIn;
     }
+    public void appendClassesIn(Class c) {
+        this.classesIn.add(c);
+    }
 
     public ArrayList<Class> getClassesOwned() {
         return classesOwned;
     }
     public void setClassesOwned(ArrayList<Class> classesOwned) {
         this.classesOwned = classesOwned;
+    }
+    public void appendClassesOwned(Class c) {
+        this.classesOwned.add(c);
     }
 
     public String getEmail() {

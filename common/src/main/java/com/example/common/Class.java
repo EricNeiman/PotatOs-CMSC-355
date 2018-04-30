@@ -20,7 +20,6 @@ public class Class {
         this.classCode = classCode;
         this.quizzes = quizzes;
         this.users = users;
-
         this.checkCollections();
     } // basic constructor
 
@@ -63,6 +62,9 @@ public class Class {
     }
     public void setUsers(ArrayList<User> users) {
         this.users = users;
+    }
+    public void appendUsers(User u) {
+        this.users.add(u);
     }
 
     public ArrayList<Quiz> getQuizzes() {
