@@ -20,35 +20,35 @@ public class Quiz {
     private int studentId;
     private boolean isTaken;
 
-    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted, boolean isTaken, int studentId) {
+    public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
         this.quizName = quizName;
         this.password = password;
-        this.questions = questions;
+        this.checkCollections();
         this.openTime = openTime;
         this.closeTime = closeTime;
         this.timer = timer;
         this.owner = owner;
         this.submitted = submitted;
-        this.isTaken = isTaken;
         this.submittedOnTime = false;
-        this.studentId = studentId;
     } // basic constructor
 
     public Quiz() {
         this.quizName = "";
         this.password = "";
-        this.questions = null;
+        this.checkCollections();
         this.openTime = null;
         this.closeTime = null;
         this.timer = 0.0;
         this.owner = null;
         this.submitted = false;
         this.submittedOnTime = false;
-
-        this.classId = 0;
-        this.isTaken = false;
-        this.studentId = 0;
     } // default constructor
+
+    private void checkCollections() {
+        if (this.questions == null) {
+            this.questions = new ArrayList<>();
+        }
+    }
 
     public boolean isOpen() {
         if (closeTime.after(new Date()) && openTime.before(new Date())) { // current time is between openTime and closeTime
