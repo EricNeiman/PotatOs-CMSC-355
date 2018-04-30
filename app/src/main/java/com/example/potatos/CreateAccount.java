@@ -36,7 +36,7 @@ public class CreateAccount extends AppCompatActivity {
                 EditText password2 = findViewById(R.id.passwordConfirmEditText);
                 CheckBox teacher = findViewById(R.id.teacherCheckBox);
 
-                if (password.getText().equals(password2.getText())) {
+                if (password.getText().toString().equals(password2.getText().toString())) {
                     if (teacher.isChecked()) {
                         User newTeacher = new User(true, null, null, username.getText().toString(),
                                 email.getText().toString(), password.getText().toString(), 0);

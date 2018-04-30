@@ -73,6 +73,9 @@ public class TeacherOverview extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.createClass:
                 //Go to the join class Activity
+                Intent createClass = new Intent(getApplicationContext(), CreateClass.class);
+                createClass.putExtra("com.example.potatos.logIn", json);
+                startActivity(createClass);
                 return true;
             case R.id.logOut:
                 //return to Main Activity

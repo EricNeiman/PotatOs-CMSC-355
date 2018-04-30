@@ -30,7 +30,8 @@
         <activity android:name=".ClassQuizzes_Teacher" />
         <activity android:name=".QuizQuestions_Teacher" />
         <activity android:name=".QuizQuestions" />
-        <activity android:name=".JoinClass"></activity>
+        <activity android:name=".JoinClass" />
+        <activity android:name=".CreateClass"></activity>
     </application>
 
 </manifest>
