@@ -13,9 +13,10 @@ public class Quiz {
     private Date closeTime; // date that the quiz closes
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
-    private Boolean submitted; // true if quiz was submitted on time
-    private int id; //database id
-    private int classId;
+    private Boolean submitted; // true if quiz was submitted
+    private Boolean submittedOnTime; // true if quiz was submitted on time
+    private int id; // database id
+    private int classId; // class id
 
     public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
         this.quizName = quizName;
@@ -26,6 +27,7 @@ public class Quiz {
         this.timer = timer;
         this.owner = owner;
         this.submitted = submitted;
+        this.submittedOnTime = false;
     } // basic constructor
 
     public Quiz() {
@@ -37,6 +39,7 @@ public class Quiz {
         this.timer = 0.0;
         this.owner = null;
         this.submitted = false;
+        this.submittedOnTime = false;
     } // default constructor
 
     public boolean isOpen() {
@@ -51,6 +54,7 @@ public class Quiz {
     public String getQuizName() {
         return quizName;
     }
+
     public void setQuizName(String quizName) {
         this.quizName = quizName;
     }
@@ -58,6 +62,7 @@ public class Quiz {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -65,9 +70,11 @@ public class Quiz {
     public ArrayList<Question> getQuestions() {
         return questions;
     }
+
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
     }
+
     public void appendQuestions(Question q) {
         this.questions.add(q);
     }
@@ -75,6 +82,7 @@ public class Quiz {
     public Date getOpenTime() {
         return openTime;
     }
+
     public void setOpenTime(Date openTime) {
         this.openTime = openTime;
     }
@@ -82,6 +90,7 @@ public class Quiz {
     public Date getCloseTime() {
         return closeTime;
     } // TODO kick out user when close time passes
+
     public void setCloseTime(Date closeTime) {
         this.closeTime = closeTime;
     }
@@ -89,6 +98,7 @@ public class Quiz {
     public Double getTimer() {
         return timer;
     }
+
     public void setTimer(Double timer) {
         this.timer = timer;
     }
@@ -96,18 +106,21 @@ public class Quiz {
     public User getOwner() {
         return owner;
     }
+
     public void setOwner(User owner) {
         this.owner = owner;
     }
 
     public Double getGrade() {
-        return Double.valueOf(this.getPointsEarned()/this.getPointsPossible());
+        return Double.valueOf(this.getPointsEarned() / this.getPointsPossible());
     } // value of grade is calculated based off points earned and total points
 
     public int getPointsEarned() {
         int pointsEarned = 0;
         for (int i = 0; i < questions.size(); i++) {
-           if (questions.get(i).getCorrect()) {pointsEarned += questions.get(i).getPointValue();}
+            if (questions.get(i).getCorrect()) {
+                pointsEarned += questions.get(i).getPointValue();
+            }
         }
         return pointsEarned;
     }
@@ -115,7 +128,7 @@ public class Quiz {
     public int getPointsPossible() {
         int pointsPossible = 0;
         for (int i = 0; i < questions.size(); i++) {
-           pointsPossible += questions.get(i).getPointValue();
+            pointsPossible += questions.get(i).getPointValue();
         }
         return pointsPossible;
     }
@@ -123,13 +136,26 @@ public class Quiz {
     public Boolean getSubmitted() {
         return submitted;
     }
+
     public void setSubmitted(Boolean submitted) {
         this.submitted = submitted;
+        if (this.isOpen()) {
+            this.submittedOnTime = true;
+        }
+    }
+
+    public Boolean getSubmittedOnTime() {
+        return submittedOnTime;
+    }
+
+    public void setSubmittedOnTime(Boolean submittedOnTime) {
+        this.submittedOnTime = submittedOnTime;
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
