@@ -66,6 +66,9 @@ public class Quiz {
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
     }
+    public void appendQuestions(Question q) {
+        this.questions.add(q);
+    }
 
     public Date getOpenTime() {
         return openTime;
