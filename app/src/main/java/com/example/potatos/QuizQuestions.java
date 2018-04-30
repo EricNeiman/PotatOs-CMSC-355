@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.example.common.Quiz;
 import com.example.common.User;
-import com.google.gson.Gson;
+import com.example.common.Class;
 
 import java.util.ArrayList;
 
@@ -36,13 +36,12 @@ public class QuizQuestions extends AppCompatActivity {
 
         questListView = findViewById(R.id.questionListView);
 
-        Gson gson = new Gson();
         json = getIntent().getStringExtra("com.example.potatos.logIn");
         jsonClass = getIntent().getStringExtra("com.example.potatos.CLASS");
         jsonQuiz = getIntent().getStringExtra("com.example.potatos.QUIZ");
-        user = gson.fromJson(json, User.class);
-        userClass = gson.fromJson(jsonClass, Class.class);
-        userQuiz = gson.fromJson(jsonQuiz, Quiz.class);
+        user = User.fromJson(json);
+        userClass = Class.fromJson(jsonClass);
+        userQuiz = Quiz.fromJson(jsonQuiz);
 
         questionList = userQuiz.getQuestions();
         numberOrder = new int[questionList.size()];
@@ -79,8 +78,7 @@ public class QuizQuestions extends AppCompatActivity {
                 extras.putString("com.example.potatos.logIn", json);
                 extras.putString("com.example.potatos.CLASS", jsonClass);
                 extras.putString("com.example.potatos.QUIZ", jsonQuiz);
-                Gson gson = new Gson();
-                jsonQuestion = gson.toJson(questionList.get(position));
+                jsonQuestion = questionList.get(position).toJson();
                 extras.putString("com.example.potatos.QUESTION", jsonQuestion);
 
                 showQuestions.putExtras(extras);

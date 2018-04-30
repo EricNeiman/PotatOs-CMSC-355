@@ -14,7 +14,6 @@ import android.widget.ListView;
 import com.example.common.Class;
 import com.example.common.Quiz;
 import com.example.common.User;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -51,8 +50,7 @@ public class TeacherOverview extends AppCompatActivity {
                 Bundle extras = new Bundle();
                 extras.putInt("com.example.potatos.CLASS_INDEX", position);
                 extras.putString("com.example.potatos.logIn", json);
-                Gson gson = new Gson();
-                String jsonClass = gson.toJson(classList.get(position));
+                String jsonClass = classList.get(position).toJson();
                 extras.putString("com.example.potatos.CLASS", jsonClass);
 
                 showClassQuizzes.putExtras(extras);
@@ -87,9 +85,8 @@ public class TeacherOverview extends AppCompatActivity {
     public void createDisplayList() {
         classListView = findViewById(R.id.classListView);
 
-        Gson gson = new Gson();
         json = getIntent().getStringExtra("com.example.potatos.logIn");
-        user = gson.fromJson(json, User.class);
+        user = User.fromJson(json);
 
         classList = user.getClassesIn();
         classes = new String[classList.size()];

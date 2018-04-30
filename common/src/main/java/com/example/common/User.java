@@ -2,6 +2,7 @@ package com.example.common;
 
 import com.example.common.REST.ClassREST;
 import com.example.common.REST.SmallUser;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -119,5 +120,16 @@ public class User {
     }
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(new SmallUser(this));
+    }
+
+    public static User fromJson(String json) {
+        Gson gson = new Gson();
+        return new User(gson.fromJson(json, SmallUser.class));
     }
 }
