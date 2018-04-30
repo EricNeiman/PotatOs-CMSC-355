@@ -13,18 +13,12 @@ public class Quiz {
     private Date closeTime; // date that the quiz closes
     private Double timer; // quiz timer (uses fractional hours)
     private User owner; // quiz owner object
-<<<<<<< Updated upstream
-    private Boolean submitted; // true if quiz was submitted
-    private Boolean submittedOnTime; // true if quiz was submitted on time
-    private int id; // database id
-    private int classId; // class id
-=======
     private Boolean submitted; // true if quiz was submitted on time
     private int id; //database id
+    private Boolean submittedOnTime; // true if quiz was submitted on time
     private int classId;
     private int studentId;
     private boolean isTaken;
->>>>>>> Stashed changes
 
     public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted, boolean isTaken, int studentId) {
         this.quizName = quizName;
@@ -35,12 +29,9 @@ public class Quiz {
         this.timer = timer;
         this.owner = owner;
         this.submitted = submitted;
-<<<<<<< Updated upstream
-        this.submittedOnTime = false;
-=======
         this.isTaken = isTaken;
+        this.submittedOnTime = false;
         this.studentId = studentId;
->>>>>>> Stashed changes
     } // basic constructor
 
     public Quiz() {
@@ -52,13 +43,11 @@ public class Quiz {
         this.timer = 0.0;
         this.owner = null;
         this.submitted = false;
-<<<<<<< Updated upstream
         this.submittedOnTime = false;
-=======
+
         this.classId = 0;
         this.isTaken = false;
         this.studentId = 0;
->>>>>>> Stashed changes
     } // default constructor
 
     public boolean isOpen() {
@@ -158,17 +147,6 @@ public class Quiz {
 
     public void setSubmitted(Boolean submitted) {
         this.submitted = submitted;
-        if (this.isOpen()) {
-            this.submittedOnTime = true;
-        }
-    }
-
-    public Boolean getSubmittedOnTime() {
-        return submittedOnTime;
-    }
-
-    public void setSubmittedOnTime(Boolean submittedOnTime) {
-        this.submittedOnTime = submittedOnTime;
     }
 
     public int getId() {
