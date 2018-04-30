@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText usernameEditText = findViewById(R.id.emailEditText);
+                EditText emailEditText = findViewById(R.id.emailEditText);
                 EditText passwordEditText = findViewById(R.id.passwordEditText);
-                String email = usernameEditText.getText().toString();
+                String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 try{
                     User user = getByEmailPass(email, password);
@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         newAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent createAccount = new Intent(getApplicationContext(), CreateAccount.class);
+                startActivity(createAccount);
             }
         });
 
