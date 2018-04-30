@@ -22,7 +22,6 @@ public class Class {
         this.users = users;
 
         this.checkCollections();
-
     } // basic constructor
 
     private void checkCollections() {
@@ -44,7 +43,6 @@ public class Class {
         for (int i: cls.getQuizzes()) {
             this.quizzes.add(QuizREST.getQuizById(i));
         }
-
 
         for (int i: cls.getEnrolledUsers()) {
             this.users.add(UserREST.getById(i));
