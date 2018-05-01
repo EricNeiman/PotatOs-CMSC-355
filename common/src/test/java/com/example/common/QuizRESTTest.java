@@ -107,8 +107,6 @@ class QuizRESTTest {
         ArrayList<Question> questions = new ArrayList<>();
         questions.add(question);
 
-        //   public Quiz(String quizName, String password, ArrayList<Question> questions, Date openTime, Date closeTime, Double timer, User owner, boolean submitted) {
-
         Quiz quiz = new Quiz(
                 "Test Quiz",
                 "password",
@@ -117,7 +115,9 @@ class QuizRESTTest {
                 new Date(),
                 0.0,
                 user,
-                false
+                false,
+                false,
+                0
         );
 
 

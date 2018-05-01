@@ -1,9 +1,14 @@
 package com.example.common.REST;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -25,8 +30,6 @@ public class PotatOsApi {
     //posts to the url subPath (what appears after "api/" with parameterJson in the body, and
     //returns the body of what the server returns
     public static String postJson(String subPath, String parameterJson, boolean post) {
-        Client client = Client.create();
-
         URI url = null;
         try {
             url = new URI(API_PATH + subPath);
@@ -35,23 +38,27 @@ public class PotatOsApi {
             return null;
         }
 
-        WebResource target = client.resource(url);
-        ClientResponse rs = null;
-        if (post) {
-            rs = target
-                    .type("application/json")
-                    .post(ClientResponse.class, parameterJson);
-        } else {
-            rs = target
-                    .type("application/json")
-                    .get(ClientResponse.class);
-        }
+        HttpClient client = HttpClientBuilder.create().build();
+        try {
+            HttpRequestBase request = null;
+            if (post) {
+                request = new HttpPost(url);
+            } else {
+                request = new HttpGet(url);
+            }
 
-        System.out.println("Made a request to the server: " + url + " response: " + rs.getStatus());
-        if (rs.getStatus() == Response.Status.OK.getStatusCode()) {
-            return rs.getEntity(String.class);
-        } else {
-            System.out.println("Response was not ok from the server on REST call to " + subPath);
+            HttpResponse rs = client.execute(request);
+
+            System.out.println("Made a request to the server: " + url + " response: " + rs.getStatusLine().getStatusCode());
+            if (rs.getStatusLine().getStatusCode() == 200) {
+                return rs.getEntity().toString();
+            } else {
+                System.out.println("Response was not ok from the server on REST call to " + subPath);
+                return null;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
     }
